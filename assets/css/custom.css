@@ -1,0 +1,15 @@
+/* Set black background color, white text and some padding */
+  footer {
+    margin-top: 100px;
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  }
+
+  .header{
+  	background-color: #a80063;
+  }
+
+  .main-logo{
+  	padding: 10px;
+  }

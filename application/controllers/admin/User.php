@@ -12,11 +12,13 @@ class User extends CI_Controller {
 	public function index()
 	{
 		// mengambil data user
-		$user = $this->Crud_model->select('users','*')->result();
+		$user = $this->Crud_model->select('user','*')->result();
 		// menyimpan ke array data
 		$data['user']	= $user;
-		$this->load->view('template/backend', $data, FALSE);
+		$this->load->view('template/frontend', $data, FALSE);
 	}
+
+	
 
 }
 

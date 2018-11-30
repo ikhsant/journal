@@ -1,6 +1,6 @@
 <h1>Author's Member Area</h1>
 <p>Please enter your email address and password for author's member area.</p>
-<p>Not registered yet? Please <a href="#">click here to register.</a></p>
+<p>Not registered yet? Please <a href="<?php echo base_url('register') ?>">click here to register.</a></p>
 <p>Lost Password? Please <a href="#">Click here to recover</a></p>
 <?php
 if($this->session->flashdata('success')) {

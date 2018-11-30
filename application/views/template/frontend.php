@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><?php  ?></title>
+  <title>IJEAT</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
@@ -13,14 +13,15 @@
 </head>
 <body>
   <div class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
+  <div class="container" align="center">
         <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/logo/logo_journal.png') ?>" class="main-logo"></a>
+
+    <!-- <div class="row">
+      <div class="col-sm-6">
       </div>
       <div class="col-sm-6">
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
   <div class="container">

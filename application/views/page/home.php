@@ -2,7 +2,7 @@
 <hr>
 <div class="row">
   <div class="col-sm-3">
-    <a href="#"><img src="<?php echo base_url('assets/logo/journal.jpg') ?>" style="width: 100%"></a>
+    <a href="#" target="_blank"><img src="<?php echo base_url('assets/logo/journal.jpg') ?>" style="width: 100%"></a>
   </div>
   <div class="col-sm-9">
     <h3>Vol. 10 No. 3, September 2018 </h3>

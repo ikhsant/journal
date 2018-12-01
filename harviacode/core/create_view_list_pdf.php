@@ -1,24 +1,7 @@
 <?php 
 
-$string = "<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel=\"stylesheet\" href=\"<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>\"/>
-        <style>
-            .word-table {
-                border:1px solid black !important; 
-                border-collapse: collapse !important;
-                width: 100%;
-            }
-            .word-table tr th, .word-table tr td{
-                border:1px solid black !important; 
-                padding: 5px 10px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>".ucfirst($table_name)." List</h2>
+$string = "<h2>".ucfirst($table_name)." List</h2>
+<div class=\"table-responsive\">
         <table class=\"word-table\" style=\"margin-bottom: 10px\">
             <tr>
                 <th>No</th>";
@@ -45,8 +28,7 @@ $string .=  "\t
             }
             ?>
         </table>
-    </body>
-</html>";
+    </div>";
 
 
 $hasil_view_pdf = createFile($string, $target."views/" . $c_url . "/" . $v_pdf_file);

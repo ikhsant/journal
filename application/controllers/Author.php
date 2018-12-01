@@ -35,12 +35,13 @@ class Author extends MY_Controller
 
         $data = array(
             'author_data' => $author,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
+            'q'           => $q,
+            'pagination'  => $this->pagination->create_links(),
+            'total_rows'  => $config['total_rows'],
+            'page'        => 'author/author_list',
+            'start'       => $start,
         );
-        $this->load->view('author/author_list', $data);
+        $this->load->view('template/frontend', $data);
     }
 
     public function read($id) 

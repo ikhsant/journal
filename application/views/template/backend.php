@@ -28,37 +28,13 @@
   </div>
 </div>
   <div class="container">
-    <div class="row content">
-      <div class="col-sm-9">
+
         <?php  
         if (isset($page)) {
           $this->load->view($page);
         }
         ?>
       </div>
-      <div class="col-sm-3">
-        <h2>About IJEAT</h2>
-        <ul>
-          <li><h4><a href="#">Aims & Scope</a></h4></li>
-          <li><h4><a href="#">Editorial Board</a></h4></li>
-          <li><h4><a href="#">Current Papers</a></h4></li>
-          <li><h4><a href="#">Contact IJEEI</a></h4></li>
-          <li><h4><a href="#">Archives</a></h4></li>
-          <li><h4><a href="#">Manuscript Preparation</a></h4></li>
-          <li><h4><a href="#">Policies</a></h4></li>
-          <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
-        </ul><br>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search paper..">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
   <footer class="container-fluid">
     <h4 align="center">Copyright 2018 International Journal on Electrical Engineering and Informatics</h4>
   </footer>

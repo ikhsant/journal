@@ -326,12 +326,6 @@ echo validation_errors('<div class="alert alert-danger">','</div>');
 	<label for="varchar">Password min 6 Character <span class="small">(Needed to access your account)</span>: <?php echo form_error('password') ?></label>
 	<input type="password" pattern=".{6,}" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
 </div>
-<div class="form-group">
-	<label for="varchar">Captcha: <?php echo form_error('password') ?></label>
-	<br>
-	<img src="<?php echo base_url('login/captcha') ?>">
-	<input type="captcha" class="form-control" name="captcha" placeholder="captcha" />
-</div>
 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Register</button> 
 </form>
 <hr>

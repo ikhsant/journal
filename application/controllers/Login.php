@@ -7,7 +7,6 @@ class Login extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Author_model');
-		$this->load->helper('captcha');
 	}
 
 	public function index()
@@ -17,7 +16,7 @@ class Login extends MY_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		$email    = $this->input->post('email');
-		$password = sha1($this->input->post('password'));
+		$password = $this->input->post('password');
 		
 		if($this->form_validation->run()) {
 			$user = $this->Crud_model->select('user','*','email ="'.$email.'" AND password = "'.$password.'"');
@@ -48,6 +47,37 @@ class Login extends MY_Controller {
 		$this->load->view('template/frontend', $data, FALSE);
 	}
 
+	// forgotpassword
+	public function forgotpassword()
+	{
+		$submit=$this->input->post('forgot_pass');
+		if(isset($submit)){
+			$email=$this->input->post('email');
+			$query=$this->Crud_model->select('author','*','email = "'.$email.'"');
+			if ($query->num_rows() > 0) {
+				$row=$query->row();
+				$user_email=$row->email;
+				$pass=$row->password;
+				//Mail Code
+				$to = $user_email;
+				$subject = "Password";
+				$txt = "Your password is $pass .";
+				$headers = "From: eizan.kappa@gmail.com" . "\r\n" .
+				"CC: ikhsan.thohir@gmail.com";
+				mail($to,$subject,$txt,$headers);
+				// set message
+				$this->session->set_flashdata('success', 'Password send to your mail');
+				// redirect
+				redirect(base_url('forgotpassword'),'refresh');
+			}else{
+				$this->session->set_flashdata('error', 'Email Not Found');
+				redirect(base_url('forgotpassword'),'refresh');
+			}
+		}
+		$data['page'] = 'page/forgotpassword';
+		$this->load->view('template/frontend', $data);
+	}
+
 	// Logout
 	public function logout() 
 	{
@@ -61,7 +91,6 @@ class Login extends MY_Controller {
 	{
 		$data = array(
 			'button'      => 'Create',
-			'title'       => set_value('title'),
 			'fist_name'   => set_value('fist_name'),
 			'last_name'   => set_value('last_name'),
 			'title'       => set_value('title'),
@@ -91,6 +120,7 @@ class Login extends MY_Controller {
 		} else {
 			$data = array(
 				'title'       => $this->input->post('title',TRUE),
+				'first'       => $this->input->post('first',TRUE),
 				'last_name'   => $this->input->post('last_name',TRUE),
 				'address1'    => $this->input->post('address1',TRUE),
 				'address2'    => $this->input->post('address2',TRUE),
@@ -101,7 +131,8 @@ class Login extends MY_Controller {
 				'zip'         => $this->input->post('zip',TRUE),
 				'institution' => $this->input->post('institution',TRUE),
 				'category'    => $this->input->post('category',TRUE),
-				'password'    => $this->input->post('password',TRUE),
+				'password'    => $this->input->post('password'),
+				'akses_level' => 'author',
 			);
 			// masukan ke db
 			$this->Author_model->insert($data);
@@ -126,7 +157,7 @@ class Login extends MY_Controller {
     // rulers register
 	public function _rulesRegister() 
 	{
-		$this->form_validation->set_rules('captcha', 'captcha', 'callback_cek_captcha');
+		// $this->form_validation->set_rules('captcha', 'captcha', 'callback_cek_captcha');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required');
 		$this->form_validation->set_rules('fist_name', 'fist name', 'trim|required');
 		$this->form_validation->set_rules('last_name', 'last name', 'trim|required');

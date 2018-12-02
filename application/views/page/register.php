@@ -27,12 +27,8 @@ echo validation_errors('<div class="alert alert-danger">','</div>');
 	</select>
 </div>
 <div class="form-group">
-	<label for="varchar">Fist Name <?php echo form_error('fist_name') ?></label>
-	<input type="text" class="form-control" name="fist_name" id="fist_name" placeholder="Fist Name" value="<?php echo $fist_name; ?>" />
-</div>
-<div class="form-group">
-	<label for="varchar">Last Name <?php echo form_error('last_name') ?></label>
-	<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="<?php echo $last_name; ?>" />
+	<label for="varchar">Name <?php echo form_error('name') ?></label>
+	<input type="text" class="form-control" name="name" id="name" placeholder="Full Name" value="<?php echo $name; ?>" />
 </div>
 <div class="form-group">
 	<label for="address1">Address1 <span class="small">(building, street, etc)</span> <?php echo form_error('address1') ?></label>

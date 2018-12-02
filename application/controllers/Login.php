@@ -15,8 +15,8 @@ class Login extends MY_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
-		$email    = $this->input->post('email');
-		$password = $this->input->post('password');
+		$email     = $this->input->post('email');
+		$password  = $this->input->post('password');
 		
 		if($this->form_validation->run()) {
 			$user = $this->Crud_model->select('user','*','email ="'.$email.'" AND password = "'.$password.'"');
@@ -24,22 +24,16 @@ class Login extends MY_Controller {
 				$row = $user->row();
 				$this->session->set_userdata('id_user',$row->id_user);
 				$this->session->set_userdata('akses_level',$row->akses_level);
-				$this->session->set_userdata('nama',$row->nama);
-				$this->session->set_userdata('username',$row->username);
+				$this->session->set_userdata('nama',$row->name);
 				$this->session->set_userdata('email',$row->email);
 				// pesan sukses
 				$this->session->set_flashdata('success', 'Success');
 				// redirek
-				if ($row->akses_level == 'admin') {
-					redirect(base_url('admin/dashboard'),'refresh');
-				}elseif($row->akses_level == 'author'){
-					redirect(base_url('submission'),'refresh');
-				}else{
-					$this->session->set_flashdata('error', 'Not Found');
-				}
+				redirect(base_url('submission'),'refresh');
 			}else{
 				$this->session->set_flashdata('error', 'Email or Password incorrect');
 			}
+
 		}
 		// End validasi
 
@@ -53,7 +47,7 @@ class Login extends MY_Controller {
 		$submit=$this->input->post('forgot_pass');
 		if(isset($submit)){
 			$email=$this->input->post('email');
-			$query=$this->Crud_model->select('author','*','email = "'.$email.'"');
+			$query=$this->Crud_model->select('user','*','email = "'.$email.'"');
 			if ($query->num_rows() > 0) {
 				$row=$query->row();
 				$user_email=$row->email;
@@ -66,7 +60,7 @@ class Login extends MY_Controller {
 				"CC: ikhsan.thohir@gmail.com";
 				mail($to,$subject,$txt,$headers);
 				// set message
-				$this->session->set_flashdata('success', 'Password send to your mail');
+				$this->session->set_flashdata('success', 'Password send to your mail, Please check on your inbox');
 				// redirect
 				redirect(base_url('forgotpassword'),'refresh');
 			}else{
@@ -91,8 +85,7 @@ class Login extends MY_Controller {
 	{
 		$data = array(
 			'button'      => 'Create',
-			'fist_name'   => set_value('fist_name'),
-			'last_name'   => set_value('last_name'),
+			'name'  	  => set_value('name'),
 			'title'       => set_value('title'),
 			'address1'    => set_value('address1'),
 			'address2'    => set_value('address2'),
@@ -120,8 +113,7 @@ class Login extends MY_Controller {
 		} else {
 			$data = array(
 				'title'       => $this->input->post('title',TRUE),
-				'first'       => $this->input->post('first',TRUE),
-				'last_name'   => $this->input->post('last_name',TRUE),
+				'name'       => $this->input->post('name',TRUE),
 				'address1'    => $this->input->post('address1',TRUE),
 				'address2'    => $this->input->post('address2',TRUE),
 				'city'        => $this->input->post('city',TRUE),
@@ -159,8 +151,7 @@ class Login extends MY_Controller {
 	{
 		// $this->form_validation->set_rules('captcha', 'captcha', 'callback_cek_captcha');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required');
-		$this->form_validation->set_rules('fist_name', 'fist name', 'trim|required');
-		$this->form_validation->set_rules('last_name', 'last name', 'trim|required');
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
 		$this->form_validation->set_rules('address1', 'address1', 'trim|required');
 		$this->form_validation->set_rules('address2', 'address2', 'trim|required');
 		$this->form_validation->set_rules('city', 'city', 'trim|required');

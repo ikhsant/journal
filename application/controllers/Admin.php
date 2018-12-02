@@ -14,12 +14,20 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function index()
+	{
+		$data['page'] = 'page/admin_dashboard';
+		$user = $this->session->userdata('id_user');
+		$data['user'] = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
+		$this->load->view('template/frontend', $data);
+	}
+
 	public function author()
 	{
 		$crud = new grocery_CRUD();
  
 		$crud->set_table('author');
-		$crud->columns('fist_name','last_name','country');
+		$crud->columns('name','country');
 		$output = $crud->render();
 		 
 

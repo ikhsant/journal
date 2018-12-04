@@ -19,9 +19,10 @@ class Revisi extends CI_Controller {
 		$submit = $this->input->post('submit');
 		if (isset($submit)) {
 			// upload
-			$config['upload_path']          = './uploads/paper/revisi/';
-			$config['allowed_types']        = 'pdf|xls|xlsx|doc|docx';
-			$config['max_size']             = 5000;
+			$config['upload_path']   = './uploads/paper/revisi/';
+			$config['allowed_types'] = 'pdf|xls|xlsx|doc|docx';
+			$config['max_size']      = 5000;
+			$config['file_name']     = $id_paper.'-'.date('Ymd');
 			// $config['max_width']            = 1024;
 			// $config['max_height']           = 768;
 			$this->load->library('upload', $config);

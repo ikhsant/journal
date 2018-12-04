@@ -88,8 +88,14 @@
 		</div>
 		<div class="form-group">
 	        <label>Comment</label>
-	        <textarea class="form-control" name="komentar" required></textarea> 
+	        <textarea class="form-control" name="komentar"></textarea> 
 		</div>
+		<?php if ($this->session->userdata('akses_level') === 'admin'): ?>
+		<div class="form-group">
+	        <label>Status</label>
+	        <textarea class="form-control" name="komentar"></textarea> 
+		</div>
+		<?php endif ?>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" name="submit"><span class="glyphicon glyphicon-save"></span> Submit</button>

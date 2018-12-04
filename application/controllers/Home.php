@@ -5,7 +5,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['page'] = 'page/home';
+		$data['jurnal']     = $this->db->query("SELECT * FROM jurnal WHERE NOT status = '3' ORDER BY status ASC ")->result();
+		$data['page']       = 'page/home';
 		$this->load->view('template/frontend', $data);
 	}
 

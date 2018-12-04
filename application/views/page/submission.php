@@ -1,4 +1,3 @@
-
 <h3>Paper Submission</h3>
 <div class="panel panel-default">
 	<div class="panel-heading">

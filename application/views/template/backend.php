@@ -52,38 +52,41 @@ $setting = $this->Crud_model->select('setting','*')->row();
         </div>
       </div>
       <div class="col-sm-3">
-        <br>
-        <h4>
-          Wellcome
+        <?php if ($this->session->userdata('akses_level')): ?>
           <br>
-          <b><?php echo $user->title.' '.$user->name; ?></b>
-        </h4>
-        <hr>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            MENU
+          <h4>
+            Wellcome
+            <br>
+            <b><?php echo $user->title.' '.$user->name; ?></b>
+          </h4>
+          <hr>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              MENU
+            </div>
+            <div class="panel-body">
+              <ul>
+                <?php if ($this->session->userdata('akses_level') === 'admin'): ?>
+                  <li><a href="<?php echo base_url('admin') ?>">Dashboard</a></li>
+                  <li><a href="<?php echo base_url('admin/jurnal') ?>">Journal</a></li>
+                  <li><a href="<?php echo base_url('admin/paper') ?>">Paper</a></li>
+                  <li><a href="<?php echo base_url('paper/submited') ?>">Submited Paper</a></li>
+                  <li><a href="<?php echo base_url('admin/author') ?>">Author</a></li>
+                  <li><a href="<?php echo base_url('admin/page') ?>">Pages</a></li>
+                  <li><a href="<?php echo base_url('admin/user') ?>">User</a></li>
+                <?php endif ?>
+                <?php if ($this->session->userdata('akses_level') === 'author'): ?>
+                  <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
+                  <li><a href="<?php echo base_url('submission') ?>">Paper Submission</a></li>
+                  <li><a href="#">Change Profile</a></li>
+                  <li><a href="#">CV and Photos</a></li>
+                <?php endif ?>
+                <li><a href="<?php echo base_url('user/changepassword') ?>">Change Password</a></li>
+                <li><a href="<?php echo base_url('logout') ?>" onclick="return confirm('Are You Sure?')">Logout</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="panel-body">
-            <ul>
-              <?php if ($this->session->userdata('akses_level') === 'admin'): ?>
-                <li><a href="<?php echo base_url('admin') ?>">Dashboard</a></li>
-                <li><a href="<?php echo base_url('admin/jurnal') ?>">Journal</a></li>
-                <li><a href="<?php echo base_url('admin/paper') ?>">Paper</a></li>
-                <li><a href="<?php echo base_url('paper/submited') ?>">Submited Paper</a></li>
-                <li><a href="<?php echo base_url('admin/author') ?>">Author</a></li>
-                <li><a href="<?php echo base_url('admin/user') ?>">User</a></li>
-              <?php endif ?>
-              <?php if ($this->session->userdata('akses_level') === 'author'): ?>
-                <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
-                <li><a href="<?php echo base_url('submission') ?>">Paper Submission</a></li>
-                <li><a href="#">Change Profile</a></li>
-                <li><a href="#">CV and Photos</a></li>
-              <?php endif ?>
-              <li><a href="<?php echo base_url('user/changepassword') ?>">Change Password</a></li>
-              <li><a href="<?php echo base_url('logout') ?>" onclick="return confirm('Are You Sure?')">Logout</a></li>
-            </ul>
-          </div>
-        </div>
+        <?php endif ?>
 
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -92,13 +95,12 @@ $setting = $this->Crud_model->select('setting','*')->row();
 
           <div class="panel-body">
             <ul>
-              <li><h4><a href="#">Aims & Scope</a></h4></li>
-              <li><h4><a href="#">Editorial Board</a></h4></li>
-              <li><h4><a href="#">Current Papers</a></h4></li>
-              <li><h4><a href="#">Contact IJEEI</a></h4></li>
-              <li><h4><a href="#">Archives</a></h4></li>
-              <li><h4><a href="#">Manuscript Preparation</a></h4></li>
-              <li><h4><a href="#">Policies</a></h4></li>
+              <?php  
+              $page_menu = $this->db->query("SELECT * FROM page ORDER BY judul_page ASC")->result();
+              foreach ($page_menu as $page_menu) :
+                ?>
+                <li><h4><a href="<?php echo base_url('page/detail/').$page_menu->url ?>"><?php echo $page_menu->judul_page ?></a></h4></li>
+              <?php endforeach ?>
               <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
             </ul><br>
             <div class="input-group">

@@ -21,59 +21,58 @@ $setting = $this->Crud_model->select('setting','*')->row();
   <div class="header">
     <div class="container" align="center">
       <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/logo/logo_journal.png') ?>" class="main-logo"></a>
+    </div>
   </div>
-</div>
-<div class="container">
-  <div class="row content">
-    <div class="col-sm-9">
-      <br>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <?php  
-          if (isset($page)) {
-            $this->load->view($page);
-          }
-          ?>
+  <div class="container">
+    <div class="row content">
+      <div class="col-sm-9">
+        <br>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <?php  
+            if (isset($page)) {
+              $this->load->view($page);
+            }
+            ?>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-3">
-      <br>
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="col-sm-3">
+        <br>
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h3>About IJEAT</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <?php  
+              $page_menu = $this->db->query("SELECT * FROM page ORDER BY judul_page ASC")->result();
+              foreach ($page_menu as $page_menu) :
+                ?>
+                <li><h4><a href="<?php echo base_url('page/detail/').$page_menu->url ?>"><?php echo $page_menu->judul_page ?></a></h4></li>
+              <?php endforeach ?>
+              <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
+            </ul><br>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search paper..">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
             </div>
-        <div class="panel-body">
-          <ul>
-            <li><h4><a href="#">Aims & Scope</a></h4></li>
-            <li><h4><a href="#">Editorial Board</a></h4></li>
-            <li><h4><a href="#">Current Papers</a></h4></li>
-            <li><h4><a href="#">Contact IJEEI</a></h4></li>
-            <li><h4><a href="#">Archives</a></h4></li>
-            <li><h4><a href="#">Manuscript Preparation</a></h4></li>
-            <li><h4><a href="#">Policies</a></h4></li>
-            <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
-          </ul><br>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search paper..">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<footer class="container-fluid">
-  <h4 align="center">Copyright 2018 <?php echo $setting->keterangan ?></h4>
+  <footer class="container-fluid">
+    <h4 align="center">Copyright 2018 <?php echo $setting->keterangan ?></h4>
     <p align="center"><b>Develop by <a href="http://twitter.com/ikhsan.thohir" target="_blank">Nusa Putra IT Team</a></b></p>
-</footer>
-<?php if (isset($js_files)){ foreach($js_files as $file): ?>
-  <script src="<?php echo $file; ?>"></script>
-<?php endforeach; } ?>
+  </footer>
+  <?php if (isset($js_files)){ foreach($js_files as $file): ?>
+    <script src="<?php echo $file; ?>"></script>
+  <?php endforeach; } ?>
   <script src="<?php echo base_url() ?>assets/js/custom.js"></script>
 </body>
 </html>

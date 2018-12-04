@@ -51,9 +51,9 @@
 				<tr>
 					<td><?php echo $no++ ?></td>
 					<td><?php echo $revisi->tanggal ?></td>
-					<td><?php echo $revisi->file_paper ?></td>
+					<td><a href="<?php echo base_url('uploads/paper/revisi/').$revisi->file_paper ?>" target="_blank"><?php echo $revisi->file_paper ?></a></td>
 					<td><?php echo $revisi->komentar ?></td>
-					<td><?php echo $revisi->status ?></td>
+					<td><?php if($revisi->status == '1'){echo '<span class="label label-success">Approve</span>';}else{echo '<span class="label label-danger">Revision</span>';} ?></td>
 				</tr>
 			<?php endforeach ?>
 			<?php else: ?>
@@ -74,14 +74,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Add Revision</h4>
       </div>
+      <form method="post" enctype="multipart/form-data">
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <div class="form-group">
+	        <label>Date</label>
+	        <input type="text" class="form-control" value="<?php echo date('d-m-Y') ?>" readonly>
+		</div>
+		<div class="form-group">
+	        <label>File</label>
+	        <input type="file" name="file_paper" class="form-control" required>
+		</div>
+		<div class="form-group">
+	        <label>Comment</label>
+	        <textarea class="form-control" name="komentar" required></textarea> 
+		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" name="submit"><span class="glyphicon glyphicon-save"></span> Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-times"></span> Close</button>
       </div>
+	  </form>
     </div>
 
   </div>

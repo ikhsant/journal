@@ -9,7 +9,7 @@
 							<span class="glyphicon glyphicon-book" style="font-size: 70px;"></span>
 						</div>
 						<div class="col-xs-6 text-right">
-							<p style="font-size: 30px;"><b>5</b></p>
+							<p style="font-size: 30px;"><b><?php echo count($jurnal) ?></b></p>
 							<p><b>Journal</b></p>
 						</div>
 					</div>
@@ -26,7 +26,7 @@
 							<span class="glyphicon glyphicon-list-alt" style="font-size: 70px;"></span>
 						</div>
 						<div class="col-xs-6 text-right">
-							<p style="font-size: 30px;"><b>5</b></p>
+							<p style="font-size: 30px;"><b><?php echo count($paper) ?></b></p>
 							<p><b>Paper</b></p>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 							<span class="glyphicon glyphicon-user" style="font-size: 70px;"></span>
 						</div>
 						<div class="col-xs-6 text-right">
-							<p style="font-size: 30px;"><b>5</b></p>
+							<p style="font-size: 30px;"><b><?php echo count($user_all) ?></b></p>
 							<p><b>User</b></p>
 						</div>
 					</div>

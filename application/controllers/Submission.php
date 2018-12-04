@@ -25,10 +25,10 @@ class Submission extends CI_Controller {
 			
 			// upload
 			$config['upload_path']          = './uploads/paper/';
-			$config['allowed_types']        = 'gif|jpg|png|pdf|xls|xlsx|doc|docx';
-			$config['max_size']             = 100;
-			$config['max_width']            = 1024;
-			$config['max_height']           = 768;
+			$config['allowed_types']        = 'pdf|xls|xlsx|doc|docx';
+			$config['max_size']             = 5000;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
 			$this->load->library('upload', $config);
 
 			// file paper upload

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2018 at 01:41 AM
+-- Generation Time: Dec 04, 2018 at 10:16 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -55,15 +55,21 @@ CREATE TABLE `jurnal` (
   `judul_jurnal` varchar(255) NOT NULL,
   `tahun` varchar(255) NOT NULL,
   `volume` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `nomor` int(11) NOT NULL,
+  `cover` varchar(255) NOT NULL,
+  `keterangan` text,
+  `status` varchar(255) NOT NULL,
+  `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jurnal`
 --
 
-INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `status`) VALUES
-(1, 'IJEAT', '2018', '1', 'aktif');
+INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `nomor`, `cover`, `keterangan`, `status`, `tanggal`) VALUES
+(1, 'IJEAT', '2018', '1', 1, '5108a-poster-icced2018.jpg', NULL, '1', '2018-12-04'),
+(2, 'ICCED', '2018', '1', 1, '5108a-poster-icced2018.jpg', NULL, '3', '2018-12-04'),
+(3, 'ICCED', '2018', '1', 1, '5108a-poster-icced2018.jpg', NULL, '3', '2018-12-04');
 
 -- --------------------------------------------------------
 
@@ -76,6 +82,28 @@ CREATE TABLE `jurnal_paper` (
   `id_jurnal` varchar(255) NOT NULL,
   `id_paper` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page`
+--
+
+CREATE TABLE `page` (
+  `id_page` int(11) NOT NULL,
+  `judul_page` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `isi` text NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `page`
+--
+
+INSERT INTO `page` (`id_page`, `judul_page`, `url`, `isi`, `tanggal`) VALUES
+(1, 'Current Papers', 'current-paper', '<div>\n	International Journal on Electrical Engineering and Informatics is a peer reviewed journal in the field of electrical engineering and informatics. The journal is published quarterly by The School of Electrical Engineering and Informatics, Institut Teknologi Bandung, Indonesia. All papers will be blind reviewed. Accepted papers will be available on line (free access) and printed version. No publication fee.</div>\n<div>\n	&nbsp;</div>\n<div>\n	The journal publishes original papers in the field of electrical engineering and informatics which covers, but not limited to, the following scope :</div>\n<div>\n	&nbsp;</div>\n<h3>\n	Power Engineering</h3>\n<div>\n	&nbsp;</div>\n<div>\n	Electric Power Generation, Transmission and Distribution, Power Electronics, Power Quality, Power Economic, FACTS, Renewable Energy, Electric Traction, Electromagnetic Compatibility, Electrical Engineering Materials, High Voltage Insulation Technologies, High Voltage Apparatuses, Lightning Detection and Protection, Power System Analysis, SCADA, Electrical Measurements</div>\n<div>\n	&nbsp;</div>\n<div>\n	Telecommunication Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Antenna and Wave Propagation, Modulation and Signal Processing for Telecommunication, Wireless and Mobile Communications, Information Theory and Coding, Communication Electronics and Microwave, Radar Imaging, Distributed Platform, Communication Network and Systems, Telematics Services, Security Network, and Radio Communication.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Computer Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Computer Architecture, Parallel and Distributed Computer, Pervasive Computing, Computer Network, Embedded System, Human&mdash;Computer Interaction, Virtual/Augmented Reality, Computer Security, VLSI Design-Network Traffic Modeling, Performance Modeling, Dependable Computing, High Performance Computing, Computer Security</div>\n<div>\n	&nbsp;</div>\n<div>\n	Control and Computer Systems</div>\n<div>\n	&nbsp;</div>\n<div>\n	Optimal, Robust and Adaptive Controls, Non Linear and Stochastic Controls, Modeling and Identification, Robotics, Image Based Control, Hybrid and Switching Control, Process Optimization and Scheduling, Control and Intelligent Systems, Artificial Intelligent and Expert System, Fuzzy Logic and Neural Network, Complex Adaptive Systems.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Electronics</div>\n<div>\n	&nbsp;</div>\n<div>\n	To Study Microelectronic System, Electronic Materials, Design and Implementation of Application Specific Integrated Circuits (ASIC), System-on-a-Chip (SoC) and Electronic Instrumentation Using CAD Tools</div>\n<div>\n	&nbsp;</div>\n<div>\n	Information technology</div>\n<div>\n	&nbsp;</div>\n<div>\n	Digital Signal Processing, Human-Machine Interface, Stochastic Systems, Information Theory, Intelligent Systems, IT Governance, Networking Technology, Optical Communication Technology, Next Generation Media, Robotic Instrumentation</div>\n<div>\n	&nbsp;</div>\n<div>\n	Informatics</div>\n<div>\n	&nbsp;</div>\n<div>\n	Information Search Engine, Multimedia Security, Computer Vision, Information Retrieval, Intelligent System, Distributed Computing System, Mobile Processing, Next Network Generation, Computer Network Security, Natural Language Processing, Business Process, Cognitive Systems.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Data and Software engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Software Engineering (Software: Lifecycle, Management, Engineering Process, Engineering Tools and Methods), Programming (Programming Methodology and Paradigm), Data Engineering (Data and Knowledge level Modeling, Information Management (DB) practices, Knowledge Based Management System, Knowledge Discovery in Data)</div>\n<div>\n	&nbsp;</div>\n<div>\n	Biomedical Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Biomedical Physics, Biomedical Transducers and instrumentation, Biomedical System Design and Projects, Medical Imaging Equipment and Techniques, Telemedicine System, Biomedical Imaging and Image Processing, Biomedical Informatics and Telemedicine, Biomechanics and Rehabilitation Engineering, Biomaterials and Drug Delivery Systems.</div>\n', '0000-00-00 00:00:00'),
+(2, 'Aims & Scope', 'aims-scope', '<div>\n	International Journal on Electrical Engineering and Informatics is a peer reviewed journal in the field of electrical engineering and informatics. The journal is published quarterly by The School of Electrical Engineering and Informatics, Institut Teknologi Bandung, Indonesia. All papers will be blind reviewed. Accepted papers will be available on line (free access) and printed version. No publication fee.</div>\n<div>\n	&nbsp;</div>\n<div>\n	The journal publishes original papers in the field of electrical engineering and informatics which covers, but not limited to, the following scope :</div>\n<div>\n	&nbsp;</div>\n<div>\n	Power Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Electric Power Generation, Transmission and Distribution, Power Electronics, Power Quality, Power Economic, FACTS, Renewable Energy, Electric Traction, Electromagnetic Compatibility, Electrical Engineering Materials, High Voltage Insulation Technologies, High Voltage Apparatuses, Lightning Detection and Protection, Power System Analysis, SCADA, Electrical Measurements</div>\n<div>\n	&nbsp;</div>\n<div>\n	Telecommunication Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Antenna and Wave Propagation, Modulation and Signal Processing for Telecommunication, Wireless and Mobile Communications, Information Theory and Coding, Communication Electronics and Microwave, Radar Imaging, Distributed Platform, Communication Network and Systems, Telematics Services, Security Network, and Radio Communication.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Computer Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Computer Architecture, Parallel and Distributed Computer, Pervasive Computing, Computer Network, Embedded System, Human&mdash;Computer Interaction, Virtual/Augmented Reality, Computer Security, VLSI Design-Network Traffic Modeling, Performance Modeling, Dependable Computing, High Performance Computing, Computer Security</div>\n<div>\n	&nbsp;</div>\n<div>\n	Control and Computer Systems</div>\n<div>\n	&nbsp;</div>\n<div>\n	Optimal, Robust and Adaptive Controls, Non Linear and Stochastic Controls, Modeling and Identification, Robotics, Image Based Control, Hybrid and Switching Control, Process Optimization and Scheduling, Control and Intelligent Systems, Artificial Intelligent and Expert System, Fuzzy Logic and Neural Network, Complex Adaptive Systems.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Electronics</div>\n<div>\n	&nbsp;</div>\n<div>\n	To Study Microelectronic System, Electronic Materials, Design and Implementation of Application Specific Integrated Circuits (ASIC), System-on-a-Chip (SoC) and Electronic Instrumentation Using CAD Tools</div>\n<div>\n	&nbsp;</div>\n<div>\n	Information technology</div>\n<div>\n	&nbsp;</div>\n<div>\n	Digital Signal Processing, Human-Machine Interface, Stochastic Systems, Information Theory, Intelligent Systems, IT Governance, Networking Technology, Optical Communication Technology, Next Generation Media, Robotic Instrumentation</div>\n<div>\n	&nbsp;</div>\n<div>\n	Informatics</div>\n<div>\n	&nbsp;</div>\n<div>\n	Information Search Engine, Multimedia Security, Computer Vision, Information Retrieval, Intelligent System, Distributed Computing System, Mobile Processing, Next Network Generation, Computer Network Security, Natural Language Processing, Business Process, Cognitive Systems.</div>\n<div>\n	&nbsp;</div>\n<div>\n	Data and Software engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Software Engineering (Software: Lifecycle, Management, Engineering Process, Engineering Tools and Methods), Programming (Programming Methodology and Paradigm), Data Engineering (Data and Knowledge level Modeling, Information Management (DB) practices, Knowledge Based Management System, Knowledge Discovery in Data)</div>\n<div>\n	&nbsp;</div>\n<div>\n	Biomedical Engineering</div>\n<div>\n	&nbsp;</div>\n<div>\n	Biomedical Physics, Biomedical Transducers and instrumentation, Biomedical System Design and Projects, Medical Imaging Equipment and Techniques, Telemedicine System, Biomedical Imaging and Image Processing, Biomedical Informatics and Telemedicine, Biomechanics and Rehabilitation Engineering, Biomaterials and Drug Delivery Systems.</div>\n', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -153,9 +181,21 @@ CREATE TABLE `revisi` (
   `id_paper` varchar(255) NOT NULL,
   `file_paper` varchar(255) NOT NULL,
   `komentar` text NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `pengirim` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `revisi`
+--
+
+INSERT INTO `revisi` (`id_revisi`, `id_paper`, `file_paper`, `komentar`, `pengirim`, `status`, `tanggal`) VALUES
+(1, '49', '2018-07-12-00011.pdf', 'dasda', '', 0, '2018-12-04 07:19:55'),
+(2, '49', '2018-08-08-0001.pdf', 'Tentang Kiamat', '', 0, '2018-12-04 08:29:37'),
+(3, '49', 'revisi49-20181204.pdf', 'adsdasd', '', 0, '2018-12-04 08:32:30'),
+(4, '49', 'revisi-49-20181204.pdf', 'fasd', '', 0, '2018-12-04 08:33:13'),
+(5, '49', '49-20181204.pdf', 'fasd', '', 0, '2018-12-04 08:33:48');
 
 -- --------------------------------------------------------
 
@@ -234,6 +274,12 @@ ALTER TABLE `jurnal_paper`
   ADD PRIMARY KEY (`id_jurnal_paper`);
 
 --
+-- Indexes for table `page`
+--
+ALTER TABLE `page`
+  ADD PRIMARY KEY (`id_page`);
+
+--
 -- Indexes for table `paper`
 --
 ALTER TABLE `paper`
@@ -283,13 +329,19 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jurnal_paper`
 --
 ALTER TABLE `jurnal_paper`
   MODIFY `id_jurnal_paper` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `page`
+--
+ALTER TABLE `page`
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `paper`
@@ -313,7 +365,7 @@ ALTER TABLE `paper_file`
 -- AUTO_INCREMENT for table `revisi`
 --
 ALTER TABLE `revisi`
-  MODIFY `id_revisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_revisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setting`

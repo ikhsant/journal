@@ -29,60 +29,68 @@ $setting = $this->Crud_model->select('setting','*')->row();
         <br>
         <div class="panel panel-default">
           <div class="panel-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <h4>
-                  Wellcome
-                  <br>
-                  <b><?php echo $user->title.' '.$user->name; ?></b>
-                </h4>
-                <hr>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    MENU
-                  </div>
-                  <div class="panel-body">
-                    <ul>
-                      <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
-                      <li><a href="<?php echo base_url('submission') ?>">Paper Submission</a></li>
-                      <li><a href="#">Change Profile</a></li>
-                      <li><a href="#">CV and Photos</a></li>
-                      <li><a href="<?php echo base_url('user/changepassword') ?>">Change Password</a></li>
-                      <li><a href="<?php echo base_url('logout') ?>">Logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-8">
-                <?php
-                if($this->session->flashdata('success')) {
-                  echo '<div class="alert alert-success">';
-                  echo $this->session->flashdata('success');
-                  echo '</div>';
-                }
-                if($this->session->flashdata('error')) {
-                  echo '<div class="alert alert-danger">';
-                  echo $this->session->flashdata('error');
-                  echo '</div>';
-                }
-                // Cetak validasi error
-                echo validation_errors('<div class="alert alert-danger">','</div>');
-                ?>
-                <?php  
-                if (isset($page)) {
-                  $this->load->view($page);
-                }
-                ?>
-              </div>
-            </div>
+            <?php
+            if($this->session->flashdata('success')) {
+              echo '<div class="alert alert-success">';
+              echo $this->session->flashdata('success');
+              echo '</div>';
+            }
+            if($this->session->flashdata('error')) {
+              echo '<div class="alert alert-danger">';
+              echo $this->session->flashdata('error');
+              echo '</div>';
+            }
+            // Cetak validasi error
+            echo validation_errors('<div class="alert alert-danger">','</div>');
+            ?>
+            <?php  
+            if (isset($page)) {
+              $this->load->view($page);
+            }
+            ?>
           </div>
         </div>
       </div>
       <div class="col-sm-3">
         <br>
+        <h4>
+          Wellcome
+          <br>
+          <b><?php echo $user->title.' '.$user->name; ?></b>
+        </h4>
+        <hr>
         <div class="panel panel-default">
+          <div class="panel-heading">
+            MENU
+          </div>
           <div class="panel-body">
-            <h2>About IJEAT</h2>
+            <ul>
+              <?php if ($this->session->userdata('akses_level') === 'admin'): ?>
+                <li><a href="<?php echo base_url('admin') ?>">Dashboard</a></li>
+                <li><a href="<?php echo base_url('admin/jurnal') ?>">Journal</a></li>
+                <li><a href="<?php echo base_url('admin/paper') ?>">Paper</a></li>
+                <li><a href="<?php echo base_url('paper/submited') ?>">Submited Paper</a></li>
+                <li><a href="<?php echo base_url('admin/author') ?>">Author</a></li>
+                <li><a href="<?php echo base_url('admin/user') ?>">User</a></li>
+              <?php endif ?>
+              <?php if ($this->session->userdata('akses_level') === 'author'): ?>
+                <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
+                <li><a href="<?php echo base_url('submission') ?>">Paper Submission</a></li>
+                <li><a href="#">Change Profile</a></li>
+                <li><a href="#">CV and Photos</a></li>
+              <?php endif ?>
+              <li><a href="<?php echo base_url('user/changepassword') ?>">Change Password</a></li>
+              <li><a href="<?php echo base_url('logout') ?>" onclick="return confirm('Are You Sure?')">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>About IJEAT</h3>
+          </div>
+
+          <div class="panel-body">
             <ul>
               <li><h4><a href="#">Aims & Scope</a></h4></li>
               <li><h4><a href="#">Editorial Board</a></h4></li>

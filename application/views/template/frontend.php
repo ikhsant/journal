@@ -40,8 +40,10 @@ $setting = $this->Crud_model->select('setting','*')->row();
     <div class="col-sm-3">
       <br>
       <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>About IJEAT</h3>
+            </div>
         <div class="panel-body">
-          <h2>About IJEAT</h2>
           <ul>
             <li><h4><a href="#">Aims & Scope</a></h4></li>
             <li><h4><a href="#">Editorial Board</a></h4></li>

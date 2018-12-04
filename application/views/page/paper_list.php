@@ -15,7 +15,7 @@
 			<td><?php echo $paper->judul; ?></td>
 			<td><?php echo $paper->judul; ?></td>
 			<td><?php echo $paper->tanggal_submit; ?></td>
-			<td><?php echo $paper->tanggal_submit; ?></td>
+			<td><span class="label label-primary">Waiting</span></td>
 		</tr>
 	<?php endforeach ?>
 	<?php endif ?>

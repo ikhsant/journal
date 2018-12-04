@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 12:44 AM
+-- Generation Time: Dec 04, 2018 at 01:41 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -41,7 +41,8 @@ CREATE TABLE `author` (
 --
 
 INSERT INTO `author` (`id_author`, `nama_author`, `negara`, `email`, `institusi`) VALUES
-(19, 'Ikhsan', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University');
+(19, 'Ikhsan', 'Indonesia', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
+(20, 'Eizan', 'Indonesia', 'eizan@gmail.com', 'Nusa Putra University');
 
 -- --------------------------------------------------------
 
@@ -56,6 +57,13 @@ CREATE TABLE `jurnal` (
   `volume` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurnal`
+--
+
+INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `status`) VALUES
+(1, 'IJEAT', '2018', '1', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -110,7 +118,8 @@ CREATE TABLE `paper_author` (
 --
 
 INSERT INTO `paper_author` (`id_paper_author`, `id_paper`, `id_author`, `author_ke`) VALUES
-(16, '49', '19', '1');
+(16, '49', '19', '1'),
+(17, '49', '20', '2');
 
 -- --------------------------------------------------------
 
@@ -132,6 +141,21 @@ CREATE TABLE `paper_file` (
 
 INSERT INTO `paper_file` (`id_paper_file`, `id_paper`, `file`, `tanggal`, `status`) VALUES
 (43, '49', 'logo_sd1.png', '2018-12-02', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `revisi`
+--
+
+CREATE TABLE `revisi` (
+  `id_revisi` int(11) NOT NULL,
+  `id_paper` varchar(255) NOT NULL,
+  `file_paper` varchar(255) NOT NULL,
+  `komentar` text NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -228,6 +252,12 @@ ALTER TABLE `paper_file`
   ADD PRIMARY KEY (`id_paper_file`);
 
 --
+-- Indexes for table `revisi`
+--
+ALTER TABLE `revisi`
+  ADD PRIMARY KEY (`id_revisi`);
+
+--
 -- Indexes for table `setting`
 --
 ALTER TABLE `setting`
@@ -247,13 +277,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jurnal_paper`
@@ -271,13 +301,19 @@ ALTER TABLE `paper`
 -- AUTO_INCREMENT for table `paper_author`
 --
 ALTER TABLE `paper_author`
-  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `paper_file`
 --
 ALTER TABLE `paper_file`
   MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `revisi`
+--
+ALTER TABLE `revisi`
+  MODIFY `id_revisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setting`

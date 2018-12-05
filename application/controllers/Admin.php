@@ -80,6 +80,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
  
 		$crud->set_table('paper');
+		$crud->set_relation_n_n('author', 'paper_author', 'author', 'id_paper', 'id_author', 'nama_author');
 		$output = $crud->render();
 		$user   = $this->session->userdata('id_user');
 		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
@@ -98,6 +99,39 @@ class Admin extends CI_Controller {
 		$crud->set_table('page');
 		$output = $crud->render();
 		$user   = $this->session->userdata('id_user');
+		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
+		$data['crud']       = $this->load->view('crud',$output);
+		$data['page']       = 'admin/crud_admin';
+		$data['title_page'] = 'Paper';
+
+		$this->load->view('template/backend', $data);
+	}
+
+	// Setiting
+	public function setting()
+	{
+		$crud = new grocery_CRUD();
+ 
+		$crud->set_table('setting');
+		$output = $crud->render();
+		$user   = $this->session->userdata('id_user');
+		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
+		$data['crud']       = $this->load->view('crud',$output);
+		$data['page']       = 'admin/crud_admin';
+		$data['title_page'] = 'Paper';
+
+		$this->load->view('template/backend', $data);
+	}
+
+	// Partner
+	public function partner()
+	{
+		$crud = new grocery_CRUD();
+ 
+		$crud->set_table('partner');
+		$crud->set_field_upload('logo','uploads/partner');
+		$output             = $crud->render();
+		$user               = $this->session->userdata('id_user');
 		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';

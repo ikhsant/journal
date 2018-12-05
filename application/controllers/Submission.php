@@ -22,13 +22,13 @@ class Submission extends CI_Controller {
 			$id_user = $this->session->userdata('id_user');
 			$judul   = $this->input->post('judul');
 			$abstrak = $this->input->post('abstract');
+			$keyword = $this->input->post('keyword');
 			
 			// upload
-			$config['upload_path']          = './uploads/paper/';
-			$config['allowed_types']        = 'pdf|xls|xlsx|doc|docx';
-			$config['max_size']             = 5000;
-			// $config['max_width']            = 1024;
-			// $config['max_height']           = 768;
+			$config['upload_path']   = './uploads/paper/';
+			$config['allowed_types'] = 'pdf|xls|xlsx|doc|docx';
+			$config['file_name']     = 'paper';
+			$config['max_size']      = 5000;
 			$this->load->library('upload', $config);
 
 			// file paper upload
@@ -40,6 +40,13 @@ class Submission extends CI_Controller {
 				// redirek
 				redirect(base_url('submission'),'refresh');
 			}
+
+			// upload
+			$config2['upload_path']   = './uploads/pernyataan_originial/';
+			$config2['allowed_types'] = 'pdf|xls|xlsx|doc|docx';
+			$config2['file_name']     = 'original_letter';
+			$config2['max_size']      = 5000;
+			$this->upload->initialize($config2);
 
 			// file pernyataan upload
 			if($this->upload->do_upload('pernyataan_originial')){
@@ -59,7 +66,8 @@ class Submission extends CI_Controller {
 				'judul'                => $this->input->post('judul'),
 				'abstrak'              => $this->input->post('abstrak'),
 				'kategori'             => $this->input->post('kategori'),
-				'id_user'             => $id_user,
+				'keyword'              => $this->input->post('keyword'),
+				'id_user'              => $id_user,
 				'pernyataan_originial' => $pernyataan_originial
 			);
 			// menyimpan kedatabase paper
@@ -68,9 +76,8 @@ class Submission extends CI_Controller {
 
 			// menyimpan kedatabase paper file
 			$data_paper_file = array(
-				'id_paper' => $id_paper,
-				'tanggal'  => date("Y-m-d"),
-				'file'     => $file_paper
+				'id_paper'   => $id_paper,
+				'file_paper' => $file_paper
 			);
 			$this->Crud_model->insert('paper_file',$data_paper_file);
 
@@ -100,13 +107,14 @@ class Submission extends CI_Controller {
 			}			
 
 			// jika semua oke
-			$this->session->set_flashdata('success', 'Sukses');
+			$this->session->set_flashdata('success', 'Succes submit the paper');
 			redirect(base_url('submission'),'refresh');
 
 		}
 
 		$id_user = $this->session->userdata('id_user');
 		$data['user'] = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row();
+		$data['jurnal'] = $this->Crud_model->select('jurnal','*','status = "1"')->result();
 		$data['page'] = 'page/submission';
 		$this->load->view('template/backend', $data, FALSE);
 	}

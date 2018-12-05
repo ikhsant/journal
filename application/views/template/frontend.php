@@ -1,10 +1,13 @@
 <?php  
 $setting = $this->Crud_model->select('setting','*')->row();
+if (isset($page_isi)) {
+  $judul_page = $page_isi->judul_page;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><?php echo $setting->nama_website ?></title>
+  <title><?php if(isset($judul_page)){echo $judul_page;}else{ echo $setting->nama_website;} ?> - <?php echo $setting->keterangan ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
@@ -49,7 +52,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
               $page_menu = $this->db->query("SELECT * FROM page ORDER BY judul_page ASC")->result();
               foreach ($page_menu as $page_menu) :
                 ?>
-                <li><h4><a href="<?php echo base_url('page/detail/').$page_menu->url ?>"><?php echo $page_menu->judul_page ?></a></h4></li>
+                <li><h4><a href="<?php echo base_url().$page_menu->url ?>"><?php echo $page_menu->judul_page ?></a></h4></li>
               <?php endforeach ?>
               <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
             </ul><br>
@@ -63,6 +66,23 @@ $setting = $this->Crud_model->select('setting','*')->row();
             </div>
           </div>
         </div>
+        <!-- link partner -->
+        <?php  
+        $partner = $this->db->query("SELECT * FROM partner ORDER BY urutan ASC")->result();
+        if (count($partner)) {
+          echo '<hr>';
+          echo '<h2>Indexed by:</h2>';
+        }
+        foreach ($partner as $partner) :
+          ?>
+          <div class="text-center">
+
+            <a href="<?php echo $partner->link ?>" target="_blank">
+              <img src="<?php echo base_url('uploads/partner/').$partner->logo ?>" class="img-responsive img-thumbnail" align="center" style="margin-bottom: 10px;">
+            </a>
+          </div>
+        <?php endforeach ?>
+        <!-- end link partner -->
       </div>
     </div>
   </div>

@@ -13,9 +13,15 @@ class Page extends CI_Controller {
 	public function detail($url = NULL)
 	{
 		if (!empty($url)) {
-			$data['page_isi'] = $this->Crud_model->select('page','*','url ="'.$url.'"')->row();
-			$data['page'] = 'page/page_isi';
-			$this->load->view('template/frontend', $data);
+			// cek page ada di database
+			$page = $this->Crud_model->select('page','*','url ="'.$url.'"');
+			if ($page->num_rows() > 0) {
+				$data['page_isi'] = $this->Crud_model->select('page','*','url ="'.$url.'"')->row();
+				$data['page'] = 'page/page_isi';
+				$this->load->view('template/frontend', $data);
+			}else{
+				show_404();
+			}
 		}else{
 			redirect(base_url(),'refresh');
 		}

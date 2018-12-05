@@ -27,29 +27,26 @@ $setting = $this->Crud_model->select('setting','*')->row();
     <div class="row">
       <div class="col-sm-9">
         <br>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <?php
-            if($this->session->flashdata('success')) {
-              echo '<div class="alert alert-success">';
-              echo $this->session->flashdata('success');
-              echo '</div>';
-            }
-            if($this->session->flashdata('error')) {
-              echo '<div class="alert alert-danger">';
-              echo $this->session->flashdata('error');
-              echo '</div>';
-            }
+        <?php
+        echo date('Y-m-d H:i:s');
+        if($this->session->flashdata('success')) {
+          echo '<div class="alert alert-success">';
+          echo $this->session->flashdata('success');
+          echo '</div>';
+        }
+        if($this->session->flashdata('error')) {
+          echo '<div class="alert alert-danger">';
+          echo $this->session->flashdata('error');
+          echo '</div>';
+        }
             // Cetak validasi error
-            echo validation_errors('<div class="alert alert-danger">','</div>');
-            ?>
-            <?php  
-            if (isset($page)) {
-              $this->load->view($page);
-            }
-            ?>
-          </div>
-        </div>
+        echo validation_errors('<div class="alert alert-danger">','</div>');
+        ?>
+        <?php  
+        if (isset($page)) {
+          $this->load->view($page);
+        }
+        ?>
       </div>
       <div class="col-sm-3">
         <?php if ($this->session->userdata('akses_level')): ?>
@@ -74,6 +71,8 @@ $setting = $this->Crud_model->select('setting','*')->row();
                   <li><a href="<?php echo base_url('admin/author') ?>">Author</a></li>
                   <li><a href="<?php echo base_url('admin/page') ?>">Pages</a></li>
                   <li><a href="<?php echo base_url('admin/user') ?>">User</a></li>
+                  <li><a href="<?php echo base_url('admin/partner') ?>">Partner</a></li>
+                  <li><a href="<?php echo base_url('admin/setting') ?>">Setting</a></li>
                 <?php endif ?>
                 <?php if ($this->session->userdata('akses_level') === 'author'): ?>
                   <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
@@ -113,6 +112,23 @@ $setting = $this->Crud_model->select('setting','*')->row();
             </div>
           </div>
         </div>
+        <!-- link partner -->
+        <?php  
+        $partner = $this->db->query("SELECT * FROM partner ORDER BY urutan ASC")->result();
+        if (count($partner)) {
+          echo '<hr>';
+          echo '<h2>Indexed by:</h2>';
+        }
+        foreach ($partner as $partner) :
+          ?>
+          <div class="text-center">
+
+            <a href="<?php echo $partner->link ?>" target="_blank">
+              <img src="<?php echo base_url('uploads/partner/').$partner->logo ?>" class="img-responsive img-thumbnail" align="center" style="margin-bottom: 10px;">
+            </a>
+          </div>
+        <?php endforeach ?>
+        <!-- end link partner -->
       </div>
     </div>
   </div>

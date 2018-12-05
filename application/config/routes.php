@@ -59,3 +59,11 @@ $route['forgotpassword']   = 'login/forgotpassword';
 $route['register_action']  = 'login/register_action';
 $route['register_success'] = 'login/register_success';
 $route['logout']           = 'login/logout';
+$route['login']            = 'login';
+$route['submission']       = 'submission';
+$route['paper']            = 'paper';
+$route['revisi']           = 'revisi';
+$route['user']             = 'user';
+$route['admin']            = 'admin';
+
+$route['(:any)']           = 'page/detail/$1';

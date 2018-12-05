@@ -7,6 +7,16 @@
 
 		<div class="panel-body">
 			<div class="form-group">
+				<label class="control-label col-sm-4">Choose Journal</label>
+				<div class="col-sm-8">
+					<select name="jurnal" class="form-control" required>
+						<?php foreach ($jurnal as $jurnal): ?>
+							<option value="<?php echo $jurnal->id_jurnal ?>"><?php echo $jurnal->judul_jurnal ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="control-label col-sm-4">Paper Title</label>
 				<div class="col-sm-8">
 					<input type="text" name="judul" class="form-control" required>
@@ -16,6 +26,12 @@
 				<label class="control-label col-sm-4">Paper Abstract</label>
 				<div class="col-sm-8">
 					<textarea name="abstrak" class="form-control" required></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4">Keywords</label>
+				<div class="col-sm-8">
+					<input type="text" name="keyword" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,13 +54,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4">Paper File (MSWord)</label>
 				<div class="col-sm-8">
-					<input type="file" name="file_paper" class="form-control" required>
+					<input type="file" name="file_paper" class="form-control" accept=".doc,.docx" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-4">Originality Declaration & Copyright Transfer</label>
+				<label class="control-label col-sm-4">Originality Declaration & Copyright Transfer (PDF)</label>
 				<div class="col-sm-8">
-					<input type="file" name="pernyataan_originial" class="form-control" required>
+					<input type="file" name="pernyataan_originial" accept=".pdf" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group" id="author_input">

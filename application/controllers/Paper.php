@@ -12,10 +12,10 @@ class Paper extends CI_Controller {
 	// submited paper
 	public function submited()
 	{
-		$user               = $this->session->userdata('id_user');
+			$user               = $this->session->userdata('id_user');
 			$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 			$data['paper']      = $this->Crud_model->select('paper','*')->result();
-			$data['page']       = 'admin/revisi';
+			$data['page']       = 'admin/submited';
 			$data['title_page'] = 'Paper';
 
 			$this->load->view('template/backend', $data);

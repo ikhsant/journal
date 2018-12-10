@@ -16,7 +16,7 @@
         <?php if (!empty($jurnal->cover)): ?>
           <a href="<?php echo base_url('uploads/cover/').$jurnal->cover ?>" target="_blank"><img src="<?php echo base_url('uploads/cover/').$jurnal->cover ?>" style="width: 100%"></a>
           <?php else: ?> 
-            <a href="<?php echo base_url('assets/logo/cover-default.jpg') ?>" target="_blank"><img src="<?php echo base_url('assets/logo/cover-default.jpg') ?>" style="width: 100%"></a>
+            <!-- <a href="<?php echo base_url('assets/logo/cover-default.jpg') ?>" target="_blank"><img src="<?php echo base_url('assets/logo/cover-default.jpg') ?>" style="width: 100%"></a> -->
           <?php endif ?>
         </div>
         <div class="col-sm-9">

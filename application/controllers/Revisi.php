@@ -109,6 +109,7 @@ class Revisi extends CI_Controller {
 		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['paper']      = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"','','tanggal_submit DESC')->row();
 		$data['revisi']     = $this->Crud_model->select('revisi','*','id_paper ="'.$id_paper.'"','','tanggal DESC')->result();
+		$data['paper_file'] = $this->Crud_model->select('paper_file','*','id_paper ="'.$id_paper.'"','','tanggal DESC')->result();
 		$data['page']       = 'page/revisi_detail';
 		$data['title_page'] = 'Paper';
 

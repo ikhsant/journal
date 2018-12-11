@@ -29,7 +29,12 @@ class Login extends MY_Controller {
 				// pesan sukses
 				$this->session->set_flashdata('success', 'Success');
 				// redirek
-				redirect(base_url('submission'),'refresh');
+				if ($row->akses_level == 'admin') {
+					redirect(base_url('admin'),'refresh');
+				}else{
+					redirect(base_url('paper/submited'),'refresh');
+				}
+				
 			}else{
 				$this->session->set_flashdata('error', 'Email or Password incorrect');
 			}
@@ -49,14 +54,14 @@ class Login extends MY_Controller {
 			$email=$this->input->post('email');
 			$query=$this->Crud_model->select('user','*','email = "'.$email.'"');
 			if ($query->num_rows() > 0) {
-				$row=$query->row();
-				$user_email=$row->email;
-				$pass=$row->password;
+				$row        =$query->row();
+				$user_email =$row->email;
+				$pass       =$row->password;
 				//Mail Code
-				$to = $user_email;
-				$subject = "Password";
-				$txt = "Your password is $pass .";
-				$headers = "From: eizan.kappa@gmail.com" . "\r\n" .
+				$to         = $user_email;
+				$subject    = "Password";
+				$txt        = "Your password is $pass .";
+				$headers    = "From: eizan.kappa@gmail.com" . "\r\n" .
 				"CC: ikhsan.thohir@gmail.com";
 				mail($to,$subject,$txt,$headers);
 				// set message
@@ -211,6 +216,7 @@ class Login extends MY_Controller {
 			return FALSE;
 		}
 	}
+
 
 }
 

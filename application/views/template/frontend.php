@@ -23,7 +23,7 @@ if (isset($page_isi)) {
 <body>
   <div class="header">
     <div class="container" align="center">
-      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/logo/logo_journal.png') ?>" class="main-logo"></a>
+      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('uploads/logo/').$setting->logo_header ?>" class="main-logo"></a>
     </div>
   </div>
   <div class="container">
@@ -48,6 +48,7 @@ if (isset($page_isi)) {
           </div>
           <div class="panel-body">
             <ul>
+              <li><h4><a href="<?php echo base_url(); ?>">Current Paper</a></h4></li>
               <?php  
               $page_menu = $this->db->query("SELECT * FROM page ORDER BY judul_page ASC")->result();
               foreach ($page_menu as $page_menu) :

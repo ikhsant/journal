@@ -58,3 +58,4 @@
 		</table>
 	</div>
 </div>
+<a href="<?php echo base_url('submission') ?>" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Submit More</a>

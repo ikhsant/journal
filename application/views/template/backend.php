@@ -20,7 +20,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
 <body>
   <div class="header">
     <div class="container" align="center">
-      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/logo/logo_journal.png') ?>" class="main-logo"></a>
+      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('uploads/logo/').$setting->logo_header ?>" class="main-logo"></a>
     </div>
   </div>
   <div class="container">
@@ -28,7 +28,6 @@ $setting = $this->Crud_model->select('setting','*')->row();
       <div class="col-sm-9">
         <br>
         <?php
-        echo date('Y-m-d H:i:s');
         if($this->session->flashdata('success')) {
           echo '<div class="alert alert-success">';
           echo $this->session->flashdata('success');
@@ -75,8 +74,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
                   <li><a href="<?php echo base_url('admin/setting') ?>">Setting</a></li>
                 <?php endif ?>
                 <?php if ($this->session->userdata('akses_level') === 'author'): ?>
-                  <li><a href="<?php echo base_url('submission/paper_list') ?>">Paper List</a></li>
-                  <li><a href="<?php echo base_url('submission') ?>">Paper Submission</a></li>
+                  <li><a href="<?php echo base_url('paper/submited') ?>">Submited Paper</a></li>
                   <li><a href="#">Change Profile</a></li>
                   <li><a href="#">CV and Photos</a></li>
                 <?php endif ?>

@@ -65,5 +65,6 @@ $route['paper']            = 'paper';
 $route['revisi']           = 'revisi';
 $route['user']             = 'user';
 $route['admin']            = 'admin';
+$route['test']            = 'test';
 
 $route['(:any)']           = 'page/detail/$1';

@@ -62,6 +62,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('jurnal');
 		$crud->set_field_upload('cover','uploads/cover');
+		$crud->set_relation_n_n('paper', 'jurnal_paper', 'paper', 'id_jurnal', 'id_paper', 'judul');
 		$crud->field_type('status','dropdown',
 			array('1' => 'Call Paper', '2' => 'Current Paper', '3' => 'Archive'));
 		$output = $crud->render();
@@ -80,6 +81,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
  
 		$crud->set_table('paper');
+		$crud->set_field_upload('file_paper_final','uploads/paper');
 		$crud->set_relation_n_n('author', 'paper_author', 'author', 'id_paper', 'id_author', 'nama_author');
 		$output = $crud->render();
 		$user   = $this->session->userdata('id_user');
@@ -113,6 +115,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
  
 		$crud->set_table('setting');
+		$crud->set_field_upload('logo','uploads/logo');
+		$crud->set_field_upload('logo_header','uploads/logo');
 		$output = $crud->render();
 		$user   = $this->session->userdata('id_user');
 		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();

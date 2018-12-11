@@ -9,8 +9,20 @@ class Paper extends CI_Controller {
 		$this->load->helper('email_helper');
 	}
 
-	public function detail()
+	public function detail($id_paper = NULL)
 	{
+		// cek jika tidak ada id paper
+		if (!$id_paper) {
+			redirect(base_url(),'refresh');
+		}
+		// end cek
+
+		$data['paper'] = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"')->row();
+		$data['author'] = $this->db->query("SELECT * 
+											FROM paper_author 
+											JOIN author 
+											ON paper_author.id_author = author.id_author 
+											WHERE paper_author.id_paper = '$id_paper' ")->result();
 		$data['page'] = 'page/paperdetail';
 		$this->load->view('template/frontend', $data);
 	}
@@ -116,26 +128,8 @@ class Paper extends CI_Controller {
 				// sukses message
 				$this->session->set_flashdata('success','Success');
 
-				// send Email
-				$status_paper = $this->input->post('status');
-				$penerima 	  = $this->db->query("
-					SELECT * FROM user
-					JOIN paper
-					ON user.id_user = paper.id_user
-					WHERE paper.id_paper = '$id_paper'
-				")->row();
-				$judul_email = 'Your status Submited Paper has change';
-				$isi_email = 'Your status Submited Paper has change please check it on http://localhost/journal/paper/revisi/'.$id_paper;
-				$this->load->library('email');
-				$this->email->from('eizan.kappa@gmail.com', 'Journal Nusa Putra');
-				$this->email->to($penerima->email);
-				$this->email->subject($judul_email);
-				$this->email->message($isi_email);
-				$this->email->send();
-				// end send Email
-
 				// redirek
-				// redirect(base_url('paper/revisi/').$id_paper, 'refresh');
+				redirect(base_url('paper/revisi/').$id_paper, 'refresh');
 			}
 			
 		}

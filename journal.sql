@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 01:29 AM
+-- Generation Time: Dec 11, 2018 at 10:57 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -41,8 +41,10 @@ CREATE TABLE `author` (
 --
 
 INSERT INTO `author` (`id_author`, `nama_author`, `negara`, `email`, `institusi`) VALUES
-(1, 'Ikhsan', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
-(2, 'hyde', '', 'hyde@gmail.com', 'Nusa Putra University');
+(1, 'Muhammad Ikhsan Thohir', 'INDONESIA', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
+(2, 'hyde', '', 'hyde@gmail.com', 'Nusa Putra University'),
+(3, 'Ikhsan', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
+(4, 'Hyde', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University');
 
 -- --------------------------------------------------------
 
@@ -67,8 +69,7 @@ CREATE TABLE `jurnal` (
 --
 
 INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `nomor`, `cover`, `keterangan`, `status`, `tanggal`) VALUES
-(4, 'SCIENCE', '2018', '1', 1, '13dae-cover1.png', '<p>\n	Call for paper</p>\n', '1', '2018-12-04'),
-(5, 'IJEAT', '2018', '1', 1, '', NULL, '1', '2018-12-04');
+(4, 'SCIENCE', '2018', '1', 1, '13dae-cover1.png', '<p>\n	Call for paper</p>\n', '2', '2018-12-04');
 
 -- --------------------------------------------------------
 
@@ -81,6 +82,14 @@ CREATE TABLE `jurnal_paper` (
   `id_jurnal` varchar(255) NOT NULL,
   `id_paper` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurnal_paper`
+--
+
+INSERT INTO `jurnal_paper` (`id_jurnal_paper`, `id_jurnal`, `id_paper`) VALUES
+(3, '4', '1'),
+(4, '4', '2');
 
 -- --------------------------------------------------------
 
@@ -109,6 +118,8 @@ CREATE TABLE `paper` (
   `keyword` varchar(255) NOT NULL,
   `kategori` varchar(255) NOT NULL,
   `pernyataan_originial` varchar(255) NOT NULL,
+  `doi` varchar(255) NOT NULL,
+  `file_paper_final` varchar(255) NOT NULL,
   `tanggal_submit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_user` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -117,8 +128,9 @@ CREATE TABLE `paper` (
 -- Dumping data for table `paper`
 --
 
-INSERT INTO `paper` (`id_paper`, `judul`, `abstrak`, `keyword`, `kategori`, `pernyataan_originial`, `tanggal_submit`, `id_user`) VALUES
-(1, 'Cara membuat blog sederhana dengan codeigniter', 'asd', 'dasdas, sadas, asdad', 'industrial engineering', 'original_letter.pdf', '2018-12-09 12:55:24', '24');
+INSERT INTO `paper` (`id_paper`, `judul`, `abstrak`, `keyword`, `kategori`, `pernyataan_originial`, `doi`, `file_paper_final`, `tanggal_submit`, `id_user`) VALUES
+(1, 'Cara membuat blog sederhana dengan codeigniter', '<p>\n	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\n', 'dasdas, sadas, asdad', 'industrial engineering', 'original_letter.pdf', 'jeei.2018.10.3.1', '', '2018-12-09 12:55:24', '24'),
+(2, 'Membuat makanan ringan', '<p>\n	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\n', 'Makanan, bawang, enak', 'mechanical engineering', 'original_letter1.pdf', '', 'ac815-test.pdf', '2018-12-11 02:21:12', '24');
 
 -- --------------------------------------------------------
 
@@ -139,7 +151,9 @@ CREATE TABLE `paper_author` (
 
 INSERT INTO `paper_author` (`id_paper_author`, `id_paper`, `id_author`, `author_ke`) VALUES
 (1, '1', '1', '1'),
-(2, '1', '2', '2');
+(2, '1', '2', '2'),
+(3, '2', '3', '1'),
+(4, '2', '4', '2');
 
 -- --------------------------------------------------------
 
@@ -163,7 +177,8 @@ CREATE TABLE `paper_file` (
 --
 
 INSERT INTO `paper_file` (`id_paper_file`, `id_paper`, `file_paper`, `file_revisi`, `komentar_author`, `komentar_admin`, `tanggal`, `status`) VALUES
-(11, '1', '1-20181209-rev.docx', '', '', '', '2018-12-09 16:47:06', 2);
+(11, '1', '1-20181209-rev.docx', '', '', '', '2018-12-09 16:47:06', 2),
+(12, '2', 'paper.docx', '', '', '', '2018-12-11 02:21:12', 2);
 
 -- --------------------------------------------------------
 
@@ -207,15 +222,16 @@ CREATE TABLE `setting` (
   `nama_website` varchar(255) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
-  `logo` varchar(255) NOT NULL
+  `logo` varchar(255) NOT NULL,
+  `logo_header` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id_setting`, `nama_website`, `keterangan`, `alamat`, `logo`) VALUES
-(1, 'IJEAT', 'International Journal Engineering and Applied Technology (IJEAT)', '', '');
+INSERT INTO `setting` (`id_setting`, `nama_website`, `keterangan`, `alamat`, `logo`, `logo_header`) VALUES
+(1, 'IJEAT', 'International Journal Engineering and Applied Technology (IJEAT)', '', '', '22de4-logo_journal.png');
 
 -- --------------------------------------------------------
 
@@ -328,7 +344,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
@@ -340,7 +356,7 @@ ALTER TABLE `jurnal`
 -- AUTO_INCREMENT for table `jurnal_paper`
 --
 ALTER TABLE `jurnal_paper`
-  MODIFY `id_jurnal_paper` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jurnal_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -352,19 +368,19 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `paper_author`
 --
 ALTER TABLE `paper_author`
-  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `paper_file`
 --
 ALTER TABLE `paper_file`
-  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `partner`

@@ -25,7 +25,7 @@ class Submission extends CI_Controller {
 			$keyword = $this->input->post('keyword');
 			
 			// upload
-			$config['upload_path']   = './uploads/paper/';
+			$config['upload_path']   = './uploads/paper/revisi/';
 			$config['allowed_types'] = 'pdf|xls|xlsx|doc|docx';
 			$config['file_name']     = 'paper';
 			$config['max_size']      = 5000;
@@ -80,6 +80,7 @@ class Submission extends CI_Controller {
 				'file_paper' => $file_paper
 			);
 			$this->Crud_model->insert('paper_file',$data_paper_file);
+			// end menyimpapan paper file
 
 			// tambahan author
 			$tambahan_author  = count($this->input->post('nama_author'));
@@ -104,7 +105,18 @@ class Submission extends CI_Controller {
 				);
 				$this->Crud_model->insert('paper_author',$data_paper_author);
 
-			}			
+			}
+			// End tambah author
+
+			// menyimpan jurnal pilihan
+			$jurnal_paper = array(
+				'id_jurnal' => $this->input->post('jurnal'), 
+				'id_paper'  => $id_paper
+			);
+			// menyimpan ke db
+			$this->Crud_model->insert('jurnal_paper',$jurnal_paper);
+			// end menyimpan jurnal pilihan
+
 
 			// jika semua oke
 			$this->session->set_flashdata('success', 'Succes submit the paper');
@@ -119,15 +131,6 @@ class Submission extends CI_Controller {
 		$this->load->view('template/backend', $data, FALSE);
 	}
 
-	public function paper_list()
-	{
-		$id_user = $this->session->userdata('id_user');
-		$paper_list = $this->Crud_model->select('paper','*','id_user = "'.$id_user.'"');
-		$data['paper'] = $paper_list->result();
-		$data['user'] = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row();
-		$data['page'] = 'page/paper_list';
-		$this->load->view('template/backend', $data, FALSE);
-	}
 }
 
 /* End of file Submission.php */

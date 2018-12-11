@@ -5,13 +5,12 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-		$submit = $this->input->post('submit');
-		if (isset($submit)) {
-			$author = $this->input->post('author');
-			print_r($author);
-		}
-		$data['page'] = 'page/test';
-		$this->load->view('template/frontend', $data);
+		$this->load->library('email');
+		$this->email->from('eizan.kappa@gmail.com', 'Journal Nusa Putra');
+		$this->email->to('ikhsan.thohir@nusaputra.ac.id');
+		$this->email->subject('TEST EMAIL');
+		$this->email->message('HAHAHAH');
+		$this->email->send();
 	}
 
 }

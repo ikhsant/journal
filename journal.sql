@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 10:57 AM
+-- Generation Time: Dec 12, 2018 at 01:50 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -41,10 +41,8 @@ CREATE TABLE `author` (
 --
 
 INSERT INTO `author` (`id_author`, `nama_author`, `negara`, `email`, `institusi`) VALUES
-(1, 'Muhammad Ikhsan Thohir', 'INDONESIA', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
-(2, 'hyde', '', 'hyde@gmail.com', 'Nusa Putra University'),
-(3, 'Ikhsan', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University'),
-(4, 'Hyde', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University');
+(1, 'eizan hyde', '', 'eizan38@gmail.com', 'Tokyo University'),
+(2, 'Yukihiro', '', 'Yukihiro@gmail.com', 'Mitsui University');
 
 -- --------------------------------------------------------
 
@@ -69,7 +67,7 @@ CREATE TABLE `jurnal` (
 --
 
 INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `nomor`, `cover`, `keterangan`, `status`, `tanggal`) VALUES
-(4, 'SCIENCE', '2018', '1', 1, '13dae-cover1.png', '<p>\n	Call for paper</p>\n', '2', '2018-12-04');
+(1, 'IJEAT', '2018', '1', 1, '', NULL, '1', '2018-12-01');
 
 -- --------------------------------------------------------
 
@@ -80,16 +78,16 @@ INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `nomor`, `
 CREATE TABLE `jurnal_paper` (
   `id_jurnal_paper` int(11) NOT NULL,
   `id_jurnal` varchar(255) NOT NULL,
-  `id_paper` varchar(255) NOT NULL
+  `id_paper` varchar(255) NOT NULL,
+  `paper_ke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jurnal_paper`
 --
 
-INSERT INTO `jurnal_paper` (`id_jurnal_paper`, `id_jurnal`, `id_paper`) VALUES
-(3, '4', '1'),
-(4, '4', '2');
+INSERT INTO `jurnal_paper` (`id_jurnal_paper`, `id_jurnal`, `id_paper`, `paper_ke`) VALUES
+(1, '1', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -129,8 +127,7 @@ CREATE TABLE `paper` (
 --
 
 INSERT INTO `paper` (`id_paper`, `judul`, `abstrak`, `keyword`, `kategori`, `pernyataan_originial`, `doi`, `file_paper_final`, `tanggal_submit`, `id_user`) VALUES
-(1, 'Cara membuat blog sederhana dengan codeigniter', '<p>\n	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\n', 'dasdas, sadas, asdad', 'industrial engineering', 'original_letter.pdf', 'jeei.2018.10.3.1', '', '2018-12-09 12:55:24', '24'),
-(2, 'Membuat makanan ringan', '<p>\n	Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>\n', 'Makanan, bawang, enak', 'mechanical engineering', 'original_letter1.pdf', '', 'ac815-test.pdf', '2018-12-11 02:21:12', '24');
+(1, 'Cara membuat blog sederhana dengan codeigniter', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'lorem, ipsum', 'mechanical engineering', 'original_letter8.pdf', '', '', '2018-12-11 18:12:17', '26');
 
 -- --------------------------------------------------------
 
@@ -150,10 +147,8 @@ CREATE TABLE `paper_author` (
 --
 
 INSERT INTO `paper_author` (`id_paper_author`, `id_paper`, `id_author`, `author_ke`) VALUES
-(1, '1', '1', '1'),
-(2, '1', '2', '2'),
-(3, '2', '3', '1'),
-(4, '2', '4', '2');
+(1, '1', '1', '0'),
+(2, '1', '2', '1');
 
 -- --------------------------------------------------------
 
@@ -177,8 +172,8 @@ CREATE TABLE `paper_file` (
 --
 
 INSERT INTO `paper_file` (`id_paper_file`, `id_paper`, `file_paper`, `file_revisi`, `komentar_author`, `komentar_admin`, `tanggal`, `status`) VALUES
-(11, '1', '1-20181209-rev.docx', '', '', '', '2018-12-09 16:47:06', 2),
-(12, '2', 'paper.docx', '', '', '', '2018-12-11 02:21:12', 2);
+(3, '1', '1-20181211.docx', '', 'please check', 'need more improvement in abastract, alse please add author more!', '2018-12-11 18:16:33', 1),
+(4, '1', '1-201812111.docx', '', 'This The new one', 'Still wrong in some part, ', '2018-12-11 18:18:00', 2);
 
 -- --------------------------------------------------------
 
@@ -195,21 +190,12 @@ CREATE TABLE `partner` (
   `urutan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `revisi`
+-- Dumping data for table `partner`
 --
 
-CREATE TABLE `revisi` (
-  `id_revisi` int(11) NOT NULL,
-  `id_paper` varchar(255) NOT NULL,
-  `file_paper` varchar(255) NOT NULL,
-  `komentar` text NOT NULL,
-  `pengirim` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `partner` (`id_partner`, `nama_partper`, `keterangan`, `link`, `logo`, `urutan`) VALUES
+(1, 'Google Schoolar', '', 'http://schoolar.google.com', '33361-schoolar.png', 0);
 
 -- --------------------------------------------------------
 
@@ -264,7 +250,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `name`, `title`, `address1`, `address2`, `city`, `country`, `phone`, `email`, `zip`, `institution`, `category`, `username`, `password`, `akses_level`, `last_login`) VALUES
 (24, 'Ikhsan', 'Mr.', '<p>\n	Cibolang</p>\n', '<p>\n	Cisaat</p>\n', 'Sukabumi', 'Indonesia', '081615399070', 'ikhsan.thohir@gmail.com', '43152', 'Nusa Putra University', 'student', '', '123456', 'author', '2018-12-02 03:49:40'),
-(25, 'Admin', 'Mr.', '<p>\r\n	Cibolang</p>\r\n', '<p>\r\n	Cisaat</p>\r\n', 'Sukabumi', 'Indonesia', '081615399070', 'admin@admin.com', '43152', 'Nusa Putra University', 'admin', '', 'admin', 'admin', '2018-12-01 18:42:48');
+(25, 'Admin', 'Mr.', '<p>\r\n	Cibolang</p>\r\n', '<p>\r\n	Cisaat</p>\r\n', 'Sukabumi', 'Indonesia', '081615399070', 'admin@admin.com', '43152', 'Nusa Putra University', 'admin', '', 'admin', 'admin', '2018-12-01 18:42:48'),
+(26, 'eizan hyde', 'Mr.', 'japan', 'japan', 'Tokyo', 'Japan', '081615399070', 'eizan38@gmail.com', '43152', 'Tokyo University', 'student', '', '123456', 'author', '2018-12-11 18:07:08');
 
 --
 -- Indexes for dumped tables
@@ -319,12 +306,6 @@ ALTER TABLE `partner`
   ADD PRIMARY KEY (`id_partner`);
 
 --
--- Indexes for table `revisi`
---
-ALTER TABLE `revisi`
-  ADD PRIMARY KEY (`id_revisi`);
-
---
 -- Indexes for table `setting`
 --
 ALTER TABLE `setting`
@@ -344,19 +325,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_jurnal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jurnal_paper`
 --
 ALTER TABLE `jurnal_paper`
-  MODIFY `id_jurnal_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jurnal_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -368,31 +349,25 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `paper_author`
 --
 ALTER TABLE `paper_author`
-  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `paper_file`
 --
 ALTER TABLE `paper_file`
-  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `partner`
 --
 ALTER TABLE `partner`
-  MODIFY `id_partner` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `revisi`
---
-ALTER TABLE `revisi`
-  MODIFY `id_revisi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_partner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -404,7 +379,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

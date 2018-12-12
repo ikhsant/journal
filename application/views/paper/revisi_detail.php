@@ -53,6 +53,13 @@
 					?>
 				</td>
 			</tr>
+			<?php if ($jurnal_paper): ?>
+			<tr>
+				<th>Published</th>
+				<td><a href="<?php echo base_url('jurnal/detail/').$jurnal_paper->id_jurnal ?>" target="_blank">Click Here</a></td>
+			</tr>
+			<?php endif ?>
+			
 		</table>
 	</div>
 	<div class="panel-footer">

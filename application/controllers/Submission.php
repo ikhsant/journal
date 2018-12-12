@@ -89,17 +89,17 @@ class Submission extends CI_Controller {
 			$institusi_author = $this->input->post('institusi_author');
 			for ($i = 0; $i < $tambahan_author ; $i++) {
 				$data_author['nama_author'] = $nama_author[$i];
-				$data_author['email'] = $email_author[$i];
-				$data_author['institusi'] = $institusi_author[$i];
+				$data_author['email']       = $email_author[$i];
+				$data_author['institusi']   = $institusi_author[$i];
 				
 				$this->Crud_model->insert('author',$data_author);
 
 				$id_author[] = $this->Crud_model->get_id();
 
 				// menyimpan data paper author
-				$author_ke = $i+1;
+				$author_ke = $i;
 				$data_paper_author = array(
-					'id_paper' => $id_paper,
+					'id_paper'  => $id_paper,
 					'author_ke' => $author_ke,
 					'id_author' => $id_author[$i]
 				);
@@ -108,26 +108,26 @@ class Submission extends CI_Controller {
 			}
 			// End tambah author
 
-			// menyimpan jurnal pilihan
-			$jurnal_paper = array(
-				'id_jurnal' => $this->input->post('jurnal'), 
-				'id_paper'  => $id_paper
-			);
-			// menyimpan ke db
-			$this->Crud_model->insert('jurnal_paper',$jurnal_paper);
-			// end menyimpan jurnal pilihan
+			// // menyimpan jurnal pilihan
+			// $jurnal_paper = array(
+			// 	'id_jurnal' => $this->input->post('jurnal'), 
+			// 	'id_paper'  => $id_paper
+			// );
+			// // menyimpan ke db
+			// $this->Crud_model->insert('jurnal_paper',$jurnal_paper);
+			// // end menyimpan jurnal pilihan
 
 
 			// jika semua oke
 			$this->session->set_flashdata('success', 'Succes submit the paper');
-			redirect(base_url('submission'),'refresh');
+			redirect(base_url('paper/submited'),'refresh');
 
 		}
 
-		$id_user = $this->session->userdata('id_user');
-		$data['user'] = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row();
+		$id_user        = $this->session->userdata('id_user');
+		$data['user']   = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row();
 		$data['jurnal'] = $this->Crud_model->select('jurnal','*','status = "1"')->result();
-		$data['page'] = 'page/submission';
+		$data['page']   = 'page/submission';
 		$this->load->view('template/backend', $data, FALSE);
 	}
 

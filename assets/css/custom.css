@@ -20,3 +20,7 @@ footer {
 a {
 	color: #a80063;
 }
+
+.kapital, h1 {
+	font-variant: small-caps;
+}

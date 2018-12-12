@@ -10,42 +10,36 @@
 				<th>Date</th>
 				<th>Submited</th>
 				<th>Title</th>
-				<th>Author</th>
 				<th>Status</th>
 				<th>Revision</th>
 			</tr>
 			<?php $no = 1; foreach ($paper as $paper): ?>
 			<?php 
+			$published = $this->Crud_model->select('jurnal_paper','*','id_paper ="'.$paper->id_paper.'"')->row();
 			$id_user_submit = $paper->id_user;
 			$user_submit = $this->Crud_model->select('user','name','id_user ="'.$id_user_submit.'"')->row();
 			?>
-				<tr>
+			<tr>
 				<td><?php echo $no++ ?></td>
 				<td><?php echo $paper->tanggal_submit ?></td>
 				<td><?php echo $user_submit->name ?></td>
 				<td><?php echo $paper->judul ?></td>
 				<td>
-					<ol>
-						<?php  
-						$author = $this->db->query("SELECT * FROM author JOIN paper_author ON author.id_author = paper_author.id_author WHERE id_paper = '$paper->id_paper' ")->result();
-						foreach ($author as $author):
-						?>
-						<li><?php echo $author->nama_author ?></li>
-						<?php endforeach ?>
-					</ol>
-				</td>
-				<td>
 					<?php
-					$paper_file_status = $this->Crud_model->select('paper_file','*','id_paper ="'.$paper->id_paper.'"','','id_paper_file DESC')->row();
-					if (count($paper_file_status) > 0){
-						if ($paper_file_status->status == '1') {
-							echo '<span class="label label-danger">Revision</span>';
-						}elseif($paper_file_status->status == '2'){
-							echo '<span class="label label-success">Approve</span>';
-						}elseif($paper_file_status->status == '0'){
-							echo '<span class="label label-warning">Waiting</span>';
-						}else{
-							echo '<span class="label label-warning">Unknown</span>';
+					if ($published) {
+						echo '<span class="label label-success">Published</span>';
+					}else{
+						$paper_file_status = $this->Crud_model->select('paper_file','*','id_paper ="'.$paper->id_paper.'"','','id_paper_file DESC')->row();
+						if (count($paper_file_status) > 0){
+							if ($paper_file_status->status == '1') {
+								echo '<span class="label label-danger">Revision</span>';
+							}elseif($paper_file_status->status == '2'){
+								echo '<span class="label label-success">Approve</span>';
+							}elseif($paper_file_status->status == '0'){
+								echo '<span class="label label-warning">Waiting</span>';
+							}else{
+								echo '<span class="label label-warning">Unknown</span>';
+							}
 						}
 					}
 					?>
@@ -54,8 +48,8 @@
 					<a href="<?php echo base_url('paper/revisi/').$paper->id_paper ?>" class="btn btn-info btn-xs">DETAIL</a>
 				</td>
 			</tr>
-			<?php endforeach ?>
-		</table>
-	</div>
+		<?php endforeach ?>
+	</table>
+</div>
 </div>
 <a href="<?php echo base_url('submission') ?>" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Submit More</a>

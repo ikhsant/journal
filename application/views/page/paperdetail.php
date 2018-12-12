@@ -1,19 +1,19 @@
 <h2><b><?php echo $paper->judul ?></b></h2>
 <h4>
 	<?php foreach ($author as $author1) : ?>
-		<?php echo $author1->nama_author.'<sup>'.$author1->author_ke.'</sup>' ?>
+		<?php $ke = $author1->author_ke+1; echo $author1->nama_author.'<sup>'.$ke.'</sup>' ?>
 	<?php endforeach ?>
 </h4>
 <p>
 	<?php foreach ($author as $author2) : ?>
-		<?php echo $author2->institusi.',' ?>
+		<?php $ke = $author2->author_ke+1; echo $author2->institusi.'<sup>'.$ke.'</sup>' ?>
 	<?php endforeach ?>
 </p>
 <?php if ($paper->doi): ?>
 	<p><a href="<?php echo $paper->doi ?>">DOI: <?php echo $paper->doi ?></a></p>
 <?php endif ?>
 <br>
-<h4><b>ASTRACT</b></h4>
+<h4 class="kapital"><b>Abstract</b></h4>
 <p>
 	<?php echo $paper->abstrak ?>
 </p>

@@ -1,16 +1,3 @@
-<?php foreach ($jurnal as $jurnal): ?>
-  <h1 class="kapital">
-    <?php 
-    if ($jurnal->status == '1') {
-      echo "Call for paper";
-    }elseif($jurnal->status == '2'){
-      echo "Current paper";
-    }else{
-      echo "Archive";
-    }
-    ?>
-  </h1>
-  <hr>
   <div class="row">
     <div class="col-sm-3">
       <?php if (!empty($jurnal->cover)): ?>
@@ -51,5 +38,4 @@
         <?php endif ?>
       </div>
       <hr>
-    <?php endforeach ?>
     <?php endforeach ?>

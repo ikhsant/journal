@@ -7,31 +7,15 @@ class Paper extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('email_helper');
-	}
-
-	public function detail($id_paper = NULL)
-	{
-		// cek jika tidak ada id paper
-		if (!$id_paper) {
+		// cek akses
+		if (!$this->session->userdata('akses_level')) {
 			redirect(base_url(),'refresh');
 		}
-		// end cek
-
-		$data['paper'] = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"')->row();
-		$data['author'] = $this->db->query("SELECT * 
-											FROM paper_author 
-											JOIN author 
-											ON paper_author.id_author = author.id_author 
-											WHERE paper_author.id_paper = '$id_paper' ")->result();
-		$data['page'] = 'page/paperdetail';
-		$this->load->view('template/frontend', $data);
 	}
 
 	// submited paper
 	public function submited()
 	{
-			$user               = $this->session->userdata('id_user');
-			$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 			$data['paper']      = $this->Crud_model->select('paper','*')->result();
 			$data['page']       = 'paper/submited';
 			$data['title_page'] = 'Paper';
@@ -134,10 +118,8 @@ class Paper extends CI_Controller {
 			
 		}
 
-		$user                    = $this->session->userdata('id_user');
-		$data['user']            = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['paper']           = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"','','tanggal_submit DESC')->row();
-		$data['revisi']          = $this->Crud_model->select('revisi','*','id_paper ="'.$id_paper.'"','','tanggal DESC')->result();
+		$data['jurnal_paper']    = $this->Crud_model->select('jurnal_paper','*','id_paper ="'.$id_paper.'"')->row();
 		$data['paper_file']      = $this->Crud_model->select('paper_file','*','id_paper ="'.$id_paper.'"','','tanggal ASC')->result();
 		$data['page']            = 'paper/revisi_detail';
 		$data['title_page']      = 'Paper';
@@ -169,6 +151,7 @@ class Paper extends CI_Controller {
 		}
 		
 	}
+	
 
 }
 

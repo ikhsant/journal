@@ -27,29 +27,35 @@ $setting = $this->Crud_model->select('setting','*')->row();
     <div class="row">
       <div class="col-sm-9">
         <br>
-        <?php
-        if($this->session->flashdata('success')) {
-          echo '<div class="alert alert-success">';
-          echo $this->session->flashdata('success');
-          echo '</div>';
-        }
-        if($this->session->flashdata('error')) {
-          echo '<div class="alert alert-danger">';
-          echo $this->session->flashdata('error');
-          echo '</div>';
-        }
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <?php
+            if($this->session->flashdata('success')) {
+              echo '<div class="alert alert-success">';
+              echo $this->session->flashdata('success');
+              echo '</div>';
+            }
+            if($this->session->flashdata('error')) {
+              echo '<div class="alert alert-danger">';
+              echo $this->session->flashdata('error');
+              echo '</div>';
+            }
             // Cetak validasi error
-        echo validation_errors('<div class="alert alert-danger">','</div>');
-        ?>
-        <?php  
-        if (isset($page)) {
-          $this->load->view($page);
-        }
-        ?>
+            echo validation_errors('<div class="alert alert-danger">','</div>');
+            ?>
+            <?php  
+            if (isset($page)) {
+              $this->load->view($page);
+            }
+            ?>
+          </div>
+        </div>
       </div>
       <div class="col-sm-3">
-        <?php if ($this->session->userdata('akses_level')): ?>
           <br>
+        <?php if ($this->session->userdata('akses_level')): ?>
+          <?php $id_user = $this->session->userdata('id_user') ?>
+          <?php $user = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row(); ?>
           <h4>
             Wellcome
             <br>
@@ -87,11 +93,13 @@ $setting = $this->Crud_model->select('setting','*')->row();
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>About IJEAT</h3>
+            <h3 class="kapital">About IJEAT</h3>
           </div>
 
           <div class="panel-body">
             <ul>
+              <li><h4><a href="<?php echo base_url(); ?>">Current Paper</a></h4></li>
+              <li><h4><a href="<?php echo base_url('archive'); ?>">Archive</a></h4></li>
               <?php  
               $page_menu = $this->db->query("SELECT * FROM page ORDER BY judul_page ASC")->result();
               foreach ($page_menu as $page_menu) :
@@ -100,14 +108,16 @@ $setting = $this->Crud_model->select('setting','*')->row();
               <?php endforeach ?>
               <li><h4><a href="<?php echo base_url('submission'); ?>">Submission</a></h4></li>
             </ul><br>
+            <form method="post" action="<?php echo base_url('search') ?>">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search paper..">
+              <input type="text" class="form-control" placeholder="Search paper.." name="cari" required>
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
+                <button class="btn btn-info" type="submit">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
               </span>
             </div>
+            </form>
           </div>
         </div>
         <!-- link partner -->
@@ -120,7 +130,6 @@ $setting = $this->Crud_model->select('setting','*')->row();
         foreach ($partner as $partner) :
           ?>
           <div class="text-center">
-
             <a href="<?php echo $partner->link ?>" target="_blank">
               <img src="<?php echo base_url('uploads/partner/').$partner->logo ?>" class="img-responsive img-thumbnail" align="center" style="margin-bottom: 10px;">
             </a>

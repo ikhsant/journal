@@ -1,5 +1,5 @@
 <h3>Paper Submission</h3>
-<?php if (count($jurnal) > 1): ?>
+<?php if (count($jurnal) > 0): ?>
 	<div class="alert alert-info">
 		<h3>NOTE:</h3>
 		<ol>
@@ -25,16 +25,16 @@
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
 			<div class="panel-body">
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="control-label col-sm-4">Choose Journal</label>
 					<div class="col-sm-8">
 						<select name="jurnal" class="form-control" required>
 							<?php foreach ($jurnal as $jurnal2): ?>
-								<option value="<?php echo $jurnal2->id_jurnal ?>"><?php echo $jurnal2->judul_jurnal ?></option>
+								<option value="<?php echo $jurnal2->id_jurnal ?>"><?php echo $jurnal2->judul_jurnal ?> VOL.<?php echo $jurnal2->volume ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label class="control-label col-sm-4">Paper Title</label>
 					<div class="col-sm-8">
@@ -71,13 +71,13 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-4">Paper File (MSWord)</label>
+					<label class="control-label col-sm-4">Paper File (MSWord) <br><a href="<?php echo base_url('uploads/template/examples.doc') ?>" target="_blank">Download Examples</a></label>
 					<div class="col-sm-8">
 						<input type="file" name="file_paper" class="form-control" accept=".doc,.docx" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-4">Originality Declaration & Copyright Transfer (PDF)</label>
+					<label class="control-label col-sm-4">Originality Declaration & Copyright Transfer (PDF) <a href="<?php echo base_url('uploads/template/Originality-letter.docx') ?>" target="_blank">Download Template</a></label>
 					<div class="col-sm-8">
 						<input type="file" name="pernyataan_originial" accept=".pdf" class="form-control" required>
 					</div>

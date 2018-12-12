@@ -43,7 +43,7 @@ class Login extends MY_Controller {
 		// End validasi
 
 		$data['page'] = 'page/login';
-		$this->load->view('template/frontend', $data, FALSE);
+		$this->load->view('template/backend', $data, FALSE);
 	}
 
 	// forgotpassword
@@ -74,7 +74,7 @@ class Login extends MY_Controller {
 			}
 		}
 		$data['page'] = 'page/forgotpassword';
-		$this->load->view('template/frontend', $data);
+		$this->load->view('template/backend', $data);
 	}
 
 	// Logout
@@ -105,7 +105,7 @@ class Login extends MY_Controller {
 		);
 		$data['page'] = 'page/register';
 		echo $this->session->userdata('rand_code');
-		$this->load->view('template/frontend', $data);
+		$this->load->view('template/backend', $data);
 	}
 
 	// register action
@@ -132,7 +132,7 @@ class Login extends MY_Controller {
 				'akses_level' => 'author',
 			);
 			// masukan ke db
-			$this->Author_model->insert($data);
+			$this->Author_model->insert_user($data);
 			// send email
 			$email    = $this->input->post('email');
 			$password = $this->input->post('password');
@@ -174,47 +174,7 @@ class Login extends MY_Controller {
 	public function register_success()
 	{
 		$data['page'] = 'page/register_success';
-		$this->load->view('template/frontend', $data);
-	}
-
-
-	// chapta
-	public function captcha()
-	{
-		$num1=rand(1,9); //Generate First number between 1 and 9  
-		$num2=rand(1,9); //Generate Second number between 1 and 9  
-		$captcha_total=$num1+$num2;  
-
-		$math = "$num1"." + "."$num2"." =";  
-
-		$this->session->set_flashdata('rand_code',$captcha_total);
-
-		$font = 'assets/fonts/arial.ttf';
-
-		$image = imagecreatetruecolor(120, 30); //Change the numbers to adjust the size of the image
-		$black = imagecolorallocate($image, 0, 0, 0);
-		$color = imagecolorallocate($image, 0, 100, 90);
-		$white = imagecolorallocate($image, 0, 26, 26);
-
-		imagefilledrectangle($image,0,0,399,99,$white);
-		imagettftext ($image, 20, 0, 20, 25, $color, $font, $math );//Change the numbers to adjust the font-size
-
-		header("Content-type: image/png");
-		imagepng($image);
-	}
-
-
-	// cek capta
-	public function cek_captcha($captcha)
-	{
-		$captcha_session = $this->session->flashdata('rand_code'); 
-
-		if ($captcha == $captcha_session) {
-			return TRUE;
-		}else{
-			$this->form_validation->set_message('cek_captcha', 'Wrong Captcha.');
-			return FALSE;
-		}
+		$this->load->view('template/backend', $data);
 	}
 
 

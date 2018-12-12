@@ -78,6 +78,12 @@ class Author_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
+    // insert data
+    function insert_user($data)
+    {
+        $this->db->insert('user', $data);
+    }
+
     // update data
     function update($id, $data)
     {

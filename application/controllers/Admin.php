@@ -16,12 +16,13 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$data['jurnal']   = $this->Crud_model->select('jurnal','*')->result();
-		$data['user_all'] = $this->Crud_model->select('user','*')->result();
-		$data['paper']    = $this->Crud_model->select('paper','*')->result();
-		$data['page']     = 'admin/dashboard';
-		$user             = $this->session->userdata('id_user');
-		$data['user']     = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
+		$data['approve'] 	   = $this->Crud_model->select('paper_file','*','status ="2"')->result();
+		$data['revision'] 	   = $this->Crud_model->select('paper_file','*','status ="1"')->result();
+		$data['paper_waiting'] = $this->Crud_model->select('paper_file','*','status ="0"')->result();
+		$data['jurnal']        = $this->Crud_model->select('jurnal','*')->result();
+		$data['user_all']      = $this->Crud_model->select('user','*')->result();
+		$data['paper']         = $this->Crud_model->select('paper','*')->result();
+		$data['page']          = 'admin/dashboard';
 		$this->load->view('template/backend', $data);
 	}
 
@@ -31,8 +32,6 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_table('author');
 		$output             = $crud->render();
-		$user               = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Author';
@@ -47,8 +46,6 @@ class Admin extends CI_Controller {
 		$crud->set_table('user');
 		$crud->columns('name','email','institution','country');
 		$output = $crud->render();
-		$user = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'User';
@@ -61,13 +58,13 @@ class Admin extends CI_Controller {
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_table('jurnal');
+		$crud->order_by('tanggal','DESC');
+		$crud->columns('tanggal','judul_jurnal','volume','tahun','status');
 		$crud->set_field_upload('cover','uploads/cover');
-		$crud->set_relation_n_n('paper', 'jurnal_paper', 'paper', 'id_jurnal', 'id_paper', 'judul');
+		$crud->set_relation_n_n('paper', 'jurnal_paper', 'paper', 'id_jurnal', 'id_paper', 'judul', 'paper_ke');
 		$crud->field_type('status','dropdown',
 			array('1' => 'Call Paper', '2' => 'Current Paper', '3' => 'Archive'));
 		$output = $crud->render();
-		$user   = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Journal';
@@ -81,11 +78,11 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
  
 		$crud->set_table('paper');
+		$crud->order_by('tanggal_submit','DESC');
+		$crud->columns('tanggal_submit','judul','author','file_paper_final');
 		$crud->set_field_upload('file_paper_final','uploads/paper');
-		$crud->set_relation_n_n('author', 'paper_author', 'author', 'id_paper', 'id_author', 'nama_author');
+		$crud->set_relation_n_n('author', 'paper_author', 'author', 'id_paper', 'id_author', 'nama_author', 'author_ke');
 		$output = $crud->render();
-		$user   = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Paper';
@@ -100,8 +97,6 @@ class Admin extends CI_Controller {
  
 		$crud->set_table('page');
 		$output = $crud->render();
-		$user   = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Paper';
@@ -118,8 +113,6 @@ class Admin extends CI_Controller {
 		$crud->set_field_upload('logo','uploads/logo');
 		$crud->set_field_upload('logo_header','uploads/logo');
 		$output = $crud->render();
-		$user   = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Paper';
@@ -135,8 +128,6 @@ class Admin extends CI_Controller {
 		$crud->set_table('partner');
 		$crud->set_field_upload('logo','uploads/partner');
 		$output             = $crud->render();
-		$user               = $this->session->userdata('id_user');
-		$data['user']       = $this->Crud_model->select('user','*','id_user = "'.$user.'"')->row();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
 		$data['title_page'] = 'Paper';

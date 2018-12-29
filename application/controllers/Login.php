@@ -7,6 +7,14 @@ class Login extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Author_model');
+		
+		// cek akses level
+		// if ($this->session->userdata('akses_level') == 'admin') {
+		// 	redirect(base_url('admin'),'refresh');
+		// }elseif($this->session->userdata('akses_level') == 'author'){
+		// 	redirect(base_url('paper/submited'),'refresh');
+		// }
+		// end cek akses level
 	}
 
 	public function index()
@@ -57,13 +65,14 @@ class Login extends MY_Controller {
 				$row        =$query->row();
 				$user_email =$row->email;
 				$pass       =$row->password;
-				//Mail Code
-				$to         = $user_email;
-				$subject    = "Password";
-				$txt        = "Your password is $pass .";
-				$headers    = "From: eizan.kappa@gmail.com" . "\r\n" .
-				"CC: ikhsan.thohir@gmail.com";
-				mail($to,$subject,$txt,$headers);
+
+				//Kirim email
+				$setting = $this->Crud_model->select('setting','*')->row();
+				$judul = 'Forgot Password - '.$setting->nama_website;
+				$isi = 'Your password is <b>'.$pass.'</b><br>Login in '.base_url('login');
+				$this->kirimEmail($user_email,$judul,$isi);
+				// end kirim email
+				
 				// set message
 				$this->session->set_flashdata('success', 'Password send to your mail, Please check on your inbox');
 				// redirect
@@ -133,17 +142,16 @@ class Login extends MY_Controller {
 			);
 			// masukan ke db
 			$this->Author_model->insert_user($data);
-			// send email
-			$email    = $this->input->post('email');
-			$password = $this->input->post('password');
-			$to       = $email;
-			$subject  = "IJEAT Author Register";
-			$message  = 'Thank you for register to IJEAT here is your account:<br>Email: '.$email.'<br>Password: '.$password;
-			$headers  = "MIME-Version: 1.0" . "\r\n";
-			$headers  .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			$headers  .= 'From: <eizan.kappa@gmail.com>' . "\r\n";
-			$headers  .= 'Cc: eizan38@gmail.com' . "\r\n";
-			mail($to,$subject,$message,$headers);
+
+			//Kirim email
+			$user_email = $this->input->post('email');
+			$password   = $this->input->post('password');
+			$setting    = $this->Crud_model->select('setting','*')->row();
+			$judul      = 'Author Registration - '.$setting->nama_website;
+			$isi        = 'Thank you for register to '.$setting->nama_website.' here is your account:<br>Email: '.$user_email.'<br>Password: <b>'.$password.'</b><br>Login:'.base_url('login');
+			$this->kirimEmail($user_email,$judul,$isi);
+			// end kirim email
+
 			// set sukses mesage
 			$this->session->set_flashdata('message', 'Create Record Success');
 			redirect(site_url('register_success'));
@@ -177,8 +185,20 @@ class Login extends MY_Controller {
 		$this->load->view('template/backend', $data);
 	}
 
+	// function kirim email
+	public function kirimEmail($tujuan,$judul,$isi)
+	{
+		$this->load->library('email');
+		$this->email->set_newline("\r\n");
+		$this->email->from('eizan.kappa@gmail.com'); // email pengirim
+		$this->email->to($tujuan); // tujuan
+		$this->email->subject($judul); // judul email
+		$this->email->message($isi);
+		$this->email->send();
+  }
+
 
 }
 
-/* End of file Login.php */
+	/* End of file Login.php */
 /* Location: ./application/controllers/Login.php */

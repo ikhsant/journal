@@ -20,7 +20,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
 <body>
   <div class="header">
     <div class="container" align="center">
-      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('uploads/logo/').$setting->logo_header ?>" class="main-logo"></a>
+      <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('uploads/logo/').$setting->logo_header ?>" class="main-logo" style="height: 100px;width: auto;"></a>
     </div>
   </div>
   <div class="container">
@@ -57,14 +57,14 @@ $setting = $this->Crud_model->select('setting','*')->row();
           <?php $id_user = $this->session->userdata('id_user') ?>
           <?php $user = $this->Crud_model->select('user','*','id_user = "'.$id_user.'"')->row(); ?>
           <h4>
-            Wellcome
+              <span class="kapital"><b>Wellcome</b></span>
             <br>
             <b><?php echo $user->title.' '.$user->name; ?></b>
           </h4>
           <hr>
           <div class="panel panel-default">
             <div class="panel-heading">
-              MENU
+              <span class="kapital"><b>Menu</b></span>
             </div>
             <div class="panel-body">
               <ul>
@@ -93,7 +93,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="kapital">About IJEAT</h3>
+            <h3 class="kapital">About</h3>
           </div>
 
           <div class="panel-body">
@@ -141,7 +141,7 @@ $setting = $this->Crud_model->select('setting','*')->row();
   </div>
   <footer class="container-fluid">
     <h4 align="center">Copyright 2018 <?php echo $setting->keterangan ?></h4>
-    <p align="center"><b>Develop by <a href="http://twitter.com/ikhsan.thohir" target="_blank">Nusa Putra IT Team</a></b></p>
+    <p align="center"><b>Develop by <a href="http://twitter.com/ikhsanthohir" target="_blank">Nusa Putra IT Team</a></b></p>
   </footer>
   <?php if (isset($js_files)){ foreach($js_files as $file): ?>
     <script src="<?php echo $file; ?>"></script>

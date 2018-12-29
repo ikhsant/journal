@@ -38,7 +38,7 @@ class Page extends CI_Controller {
 	// archive
 	public function archive()
 	{
-		$data['jurnal'] = $this->db->query("SELECT * FROM jurnal WHERE status = '3' ORDER BY volume ASC, tahun DESC")->result();
+		$data['jurnal'] = $this->db->query("SELECT * FROM jurnal WHERE status = '3' OR status = '2' ORDER BY volume ASC, tahun DESC")->result();
 		$data['page'] = 'page/archive';
 		$this->load->view('template/backend', $data);
 	}
@@ -73,7 +73,12 @@ class Page extends CI_Controller {
 		}
 		// end cek
 
-		$data['paper'] = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"')->row();
+		$data['jurnal'] = $this->db->query("SELECT *
+											FROM jurnal_paper
+											JOIN jurnal
+											ON jurnal_paper.id_jurnal = jurnal.id_jurnal
+											WHERE id_paper = '$id_paper'")->row();
+		$data['paper']  = $this->Crud_model->select('paper','*','id_paper ="'.$id_paper.'"')->row();
 		$data['author'] = $this->db->query("SELECT * 
 											FROM paper_author 
 											JOIN author 

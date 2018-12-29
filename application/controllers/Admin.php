@@ -82,6 +82,7 @@ class Admin extends CI_Controller {
 		$crud->columns('tanggal_submit','judul','author','file_paper_final');
 		$crud->set_field_upload('file_paper_final','uploads/paper');
 		$crud->set_relation_n_n('author', 'paper_author', 'author', 'id_paper', 'id_author', 'nama_author', 'author_ke');
+		$crud->set_relation_n_n('Volume Journal', 'jurnal_paper', 'jurnal', 'id_paper', 'id_jurnal', 'volume');
 		$output = $crud->render();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
@@ -99,7 +100,7 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';
-		$data['title_page'] = 'Paper';
+		$data['title_page'] = 'Pages';
 
 		$this->load->view('template/backend', $data);
 	}
@@ -112,6 +113,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('setting');
 		$crud->set_field_upload('logo','uploads/logo');
 		$crud->set_field_upload('logo_header','uploads/logo');
+		$crud->unset_delete();
 		$output = $crud->render();
 		$data['crud']       = $this->load->view('crud',$output);
 		$data['page']       = 'admin/crud_admin';

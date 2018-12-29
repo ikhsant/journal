@@ -8,7 +8,7 @@
 			<tr>
 				<th>No</th>
 				<th>Date</th>
-				<th>Submited</th>
+				<th>Submited By</th>
 				<th>Title</th>
 				<th>Status</th>
 				<th>Revision</th>
@@ -22,7 +22,7 @@
 			<tr>
 				<td><?php echo $no++ ?></td>
 				<td><?php echo $paper->tanggal_submit ?></td>
-				<td><?php echo $user_submit->name ?></td>
+				<td><?php if($user_submit){echo $user_submit->name;}else{echo "admin";} ?></td>
 				<td><?php echo $paper->judul ?></td>
 				<td>
 					<?php

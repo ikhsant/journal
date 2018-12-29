@@ -15,4 +15,4 @@
 </form>
 <hr>
 <h2>Authors Fees:</h2>
-<p>On Line publication in IJEEI is free. Postal fees are needed for printed version.</p>
+<p>On Line publication is free. Postal fees are needed for printed version.</p>

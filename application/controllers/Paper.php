@@ -16,11 +16,19 @@ class Paper extends CI_Controller {
 	// submited paper
 	public function submited()
 	{
-			$data['paper']      = $this->Crud_model->select('paper','*')->result();
-			$data['page']       = 'paper/submited';
-			$data['title_page'] = 'Paper';
+		// cek akses
+		if ($this->session->userdata('akses_level') == 'admin') {
+			$data['paper'] = $this->Crud_model->select('paper','*')->result();
+		}else{
+			$id_user       = $this->session->userdata('id_user');
+			$data['paper'] = $this->Crud_model->select('paper','*','id_user ="'.$id_user.'"')->result();
+		}
+		// end cek akses
+		
+		$data['page']       = 'paper/submited';
+		$data['title_page'] = 'Paper';
 
-			$this->load->view('template/backend', $data);
+		$this->load->view('template/backend', $data);
 	}
 
 	// detail

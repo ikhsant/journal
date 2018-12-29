@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config = array(
+$config = Array(
 	'protocol'  => 'smtp',
-	'smtp_host' => 'smtp.googlemail.com',
-	'smtp_port' => '587',
-	'smtp_user' => 'eizan.kappa@gmail.com',
-	'smtp_pass' => 'rahmareni',
+	'smtp_host' => 'ssl://smtp.googlemail.com',
+	'smtp_port' => 465,
+	'smtp_user' => 'eizan.kappa@gmail.com', // change it to yours
+	'smtp_pass' => 'rahmareni', // change it to yours
 	'mailtype'  => 'html',
-	'charset'   => 'iso-8859-1'
+	'charset'   => 'iso-8859-1',
+	'wordwrap'  => TRUE
 );

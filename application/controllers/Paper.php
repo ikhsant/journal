@@ -100,6 +100,40 @@ class Paper extends CI_Controller {
 						'id_paper'        => $id_paper
 					);
 					$this->Crud_model->update('paper_file',$data_revisi,'id_paper_file ="'.$id_paper_file.'"');
+
+					//Kirim email
+					// cek hanya author yang dapat email
+					$detail_paper = $this->Crud_model->select('paper','*','id_paper = '.$id_paper)->row();
+					if ($detail_paper->id_user) {
+						$detail_user = $this->Crud_model->select('user','*','id_user = '.$detail_paper->id_user)->row();
+						// cek status
+						$status = $this->input->post('status');
+						if ($status == '2') {
+							$status = 'Approve';
+						}else{
+							$status = 'Revision';
+						}
+						// end cek status
+						// komentar admin
+						$komentar = $this->input->post('komentar_admin');
+						if (!empty($komentar)) {
+							$komen = '<br>Comment form Admin: ';
+							$komen .= $komentar;
+						}else{
+							$komen = '';
+						}
+						// end komen
+						$nama         = $detail_user->name;
+						$tujuan       = $detail_user->email;
+						$setting      = $this->Crud_model->select('setting','*')->row();
+						$judul        = 'Your Paper Status has Changed - '.$setting->nama_website;
+						$isi          = 'Dear '.$nama.' 
+										<br>Your Paper Status now is: <b>'.$status.'</b>'.$komen.'
+										</b><br>Plase Check it on :'.base_url('paper/submited');
+						$this->kirimEmail($tujuan,$judul,$isi);
+					}
+					// end kirim email
+					
 					// sukses message
 					$this->session->set_flashdata('success','Success');
 					// redirek

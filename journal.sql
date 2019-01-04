@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2018 at 06:59 AM
+-- Generation Time: Jan 04, 2019 at 10:05 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -79,7 +79,8 @@ INSERT INTO `author` (`id_author`, `nama_author`, `negara`, `email`, `institusi`
 (40, 'Sudin Saepudin', 'Indonesia', 'sudin.saepudin@nusaputra.ac.id', 'Universitas Nusa Putra'),
 (41, 'Yufriana Imamulhak', 'Indonesia', 'yufriana.imamulhak@nusaputra.ac.id', 'Universitas Nusa Putra'),
 (42, 'Jelita Asian', 'Indonesia', 'jelita.asian@nusaputra.ac.id', 'Universitas Nusa Putra'),
-(43, 'Asep Ramdan', 'Indonesia', 'asep.ramdan@nusaputra.ac.id', 'Universitas Nusa Putra');
+(43, 'Asep Ramdan', 'Indonesia', 'asep.ramdan@nusaputra.ac.id', 'Universitas Nusa Putra'),
+(44, 'Ikhsan', '', 'ikhsan.thohir@gmail.com', 'Nusa Putra University');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,7 @@ CREATE TABLE `jurnal` (
 
 INSERT INTO `jurnal` (`id_jurnal`, `judul_jurnal`, `tahun`, `volume`, `nomor`, `cover`, `keterangan`, `status`, `tanggal`) VALUES
 (2, 'REKAYASA', '2015', '1', 1, '', NULL, '3', '2015-01-20'),
-(3, 'REKAYASA', '2017', '5', 1, '', NULL, '2', '2015-01-20');
+(3, 'REKAYASA', '2017', '5', 1, '', NULL, '1', '2015-01-20');
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,8 @@ INSERT INTO `paper` (`id_paper`, `judul`, `abstrak`, `keyword`, `kategori`, `per
 (19, 'IMPLEMENTASI FUZZY LOGIC MAMDANI UNTUK MENENTUKAN KELAYAKAN KENAIKAN GAJI KARYAWAN', '<div style=\"text-align: justify;\">\n	Fuzzy logic is a multi-multi-logic form derived from fuzzy set theory to handle estimation reasoning. Fuzzy provides a means to represent and process subjective linguistic and attribute information from the real world. Fuzzy logic is an extension of Boolean Crisp logic to handle the concept of partial truth. The use of the Mamdani fuzzy method in research aims to determine the feasibility and unworthiness of employee salary increases. The feasibility of an employee can be assessed from the level of Self Ability (KD), Personal Development (PD), Personality (KB) in the assessment stage. The system designed using the tollbox in Matlab is expected to be implemented to help the company or personnel management in making decisions to determine the feasibility of employee salary increases.</div>\n', 'Fuzzy Logic, Mamdani, Matlab', '', '', '', '7b0df-7.-edisi-v-jurnal-rekayasateknologinusaputra-dini.pdf', '2018-12-25 17:00:00', ''),
 (20, 'PENGARUH LOKASI TERHADAP KEPUTUSAN PEMBELIAN PENGUNJUNG DI MINIMARKET XYZ DI WILAYAH SUKABUMI', '<div style=\"text-align: justify;\">\n	Dalam situasi persaingan saat ini, perusahaan melakukan berbagai strategi untuk dapat mempertahankan dan meningkatkan kinerjanya. Salah satunya yaitu lokasi yang mudah dijangkau akan semakin banyak dikunjungi. Teori yang digunakan untuk keputusan pembelian adalah teori yang menyatakan lima tahapan pengambilan keputusan yaitu pengenalan masalah, pencarian informasi, evaluasi alternative, keputusan pembelian, dan perilaku pacsa pembelian. Teori lokasi yang digunakan adalah teori lokasi August Losch. Pendekatan yang digunakan pada penelitian ini adalah survey yang menggunakan sampel, karena dalam memberikan gambaran (deskripsi) atas suatu peristiwa atau gejala, menggunakan alat bantu statistic. Jenis penelitian adalah survey yang menggunakan sampel , yakni meliputi pengumpulan data untuk uji hipotesis atau menjawab pertanyaan mengenai status terakhir dari subjek penelitian. Adapun sifat penelitian adalah menguraikan atau menjelaskan (explanatory research) hubungan antar variabel penelitian dan menginterpretasikannya agar mampu menjawab rumusan masalah dan membuktikan hipotesis penelitian. Teknik pengumpulan data dilakukan melalui daftar pertanyaan (questionnaire) dan studi dokumentasi. Sampel dalam penelitian ini sebanyak 58 orang dari jumlah populasi 580 orang. Variabel diukur dengan skala likert. Pengujian hipotesis menggunakan analisis regresi linear sederhana melalui uji t dengan maksud untuk mengetahui pengaruh variable independen terhadap variable dependent pada tingkat kepercayaan 95 % ( &alpha; =0,05). Hasil pengujian dengan Uji t menunjukkan variable lokasi berpengaruh signifikan terhadap keputusan pembelian oleh pengunjung di Minimarket korelasi yang didapat sekitar r = 0,8166. Hal ini berarti bahwa lokasi dapat meningkatkan pembelian pengunjung.</div>\n', 'August Losch', '', '', '', 'c5c04-8.-edisi-v-jurnal-rekayasateknologinusaputra-sudin.pdf', '2018-12-25 17:00:00', ''),
 (21, 'ANALISIS IMPLEMENTASI 2ND CARRIER HSDPA 15 CODE PADA JARINGAN WCDMA', '<div style=\"text-align: justify;\">\n	The third generation Wideband Technology Division Multiple Access (WCDMA) is currently the only mobile technology that offers various services such as voice, video and high-speed service (HSDPA). WCDMA uses a single frequency of 5 MHz at a rate of 3.84 Mcps access which is shared by all users for all services. Increased demand for various services, especially high-speed data service (HSDPA) affect air interface capacity, power and hardware that already exists are not sufficient, so it requires capacity expansion. In this study, the analysis performed on NodeB-NodeB capacity that has been done with the implementation of the 2nd carrier. There are several options for upgrading the capacity of such sectoral split, cell split, and the addition of carrier frequency. The addition of carrier is the most efficient way because there is no additional hardware, but the mobile operator shall have additional frequency license from regulator. Distribution strategy NodeB traffic handling in the 2nd carrier depends on a variety of businessoriented considerations that traffic release 99 or high-speed data service or both. Calculation and analysis aims to determine the maximum capacity of the channels that can be provided by the NodeB to the existing traffic after the addition of the carrier and to know the performance based on the value of the KPI (Key Performance Indicator) that have been determined.</div>\n', 'UMTS, WCDMA, Multiple Access, HSDPA', '', '', '', '86409-9.edisi-v-jurnal-rekayasateknologinusaputra-yufriana-imamulhak.pdf', '2018-12-25 17:00:00', ''),
-(22, 'ANALISIS DAN PENGUJIAN 3G DAN 4G PADA INTERNET SERVICE PROVIDER (ISP) X DAN Y DAN OPTIMALISASI QUALITY OF SERVICE (QOS)', '<div style=\"text-align: justify;\">\n	Network communication technology is an interconnection circuit between technologies that are interconnected with each other. One of the wireless data technologies and services that is currently well-known and many 3G and 4G network users. With the network will facilitate users in the use of the internet in everyday life. However, with different access speeds, it is certainly necessary to test the network. Therefore, to get the quality of a network to provide good service it is necessary for Quality of service (QoS) services. Services in this test are focused on four parameters, namely: throughput, latency, jitter and packet loss. To measure the performance of 3G and 4G networks using Quality of Services (QoS), analysis and testing are used in order to see the representation of the current state. From these results, it can be concluded that there are differences in the results oftesting 3G and 4G networks. So 4G networks have twice as many tend to have increased throughput, latency, jitter and packet loss. However, from the second network technology can be used as a consideration for users in using the Internet according to their needs.</div>\n', 'QoS, Nperf,ping tools ,cmd.', '', '', '', 'd400e-10.edisi-v-jurnal-rekayasateknologinusaputra-jelita-asian.pdf', '2018-12-25 17:00:00', '');
+(22, 'ANALISIS DAN PENGUJIAN 3G DAN 4G PADA INTERNET SERVICE PROVIDER (ISP) X DAN Y DAN OPTIMALISASI QUALITY OF SERVICE (QOS)', '<div style=\"text-align: justify;\">\n	Network communication technology is an interconnection circuit between technologies that are interconnected with each other. One of the wireless data technologies and services that is currently well-known and many 3G and 4G network users. With the network will facilitate users in the use of the internet in everyday life. However, with different access speeds, it is certainly necessary to test the network. Therefore, to get the quality of a network to provide good service it is necessary for Quality of service (QoS) services. Services in this test are focused on four parameters, namely: throughput, latency, jitter and packet loss. To measure the performance of 3G and 4G networks using Quality of Services (QoS), analysis and testing are used in order to see the representation of the current state. From these results, it can be concluded that there are differences in the results oftesting 3G and 4G networks. So 4G networks have twice as many tend to have increased throughput, latency, jitter and packet loss. However, from the second network technology can be used as a consideration for users in using the Internet according to their needs.</div>\n', 'QoS, Nperf,ping tools ,cmd.', '', '', '', 'd400e-10.edisi-v-jurnal-rekayasateknologinusaputra-jelita-asian.pdf', '2018-12-25 17:00:00', ''),
+(23, 'RANCANG BANGUN ADJUSTABLE POWER SUPPLY 1,25 V-25 V MENGGUNAKAN IC LM317', 'asdasd', 'asdasd', 'industrial engineering', 'original_letter1.pdf', '', '', '2019-01-02 03:47:43', '24');
 
 -- --------------------------------------------------------
 
@@ -265,7 +267,8 @@ INSERT INTO `paper_author` (`id_paper_author`, `id_paper`, `id_author`, `author_
 (42, '20', '40', '0'),
 (43, '21', '41', '0'),
 (44, '22', '43', '0'),
-(45, '22', '42', '1');
+(45, '22', '42', '1'),
+(46, '23', '44', '0');
 
 -- --------------------------------------------------------
 
@@ -292,7 +295,9 @@ INSERT INTO `paper_file` (`id_paper_file`, `id_paper`, `file_paper`, `file_revis
 (3, '1', '1-20181211.docx', '', 'please check', 'need more improvement in abastract, alse please add author more!', '2018-12-11 18:16:33', 1),
 (4, '1', '1-201812111.docx', '', 'This The new one', 'Still wrong in some part, ', '2018-12-11 18:18:00', 2),
 (5, '12', 'paper.docx', '', '', 'kurang anu', '2018-12-12 06:01:56', 1),
-(6, '12', '12-20181212.docx', '', 'ini revisinya', '', '2018-12-12 06:41:19', 2);
+(6, '12', '12-20181212.docx', '', 'ini revisinya', '', '2018-12-12 06:41:19', 2),
+(8, '2', '2-20190104.docx', '', '', '', '2019-01-04 01:01:36', 1),
+(9, '23', '23-20190104-rev.docx', '', '', '', '2019-01-04 02:16:47', 1);
 
 -- --------------------------------------------------------
 
@@ -438,7 +443,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
@@ -462,19 +467,19 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_paper` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `paper_author`
 --
 ALTER TABLE `paper_author`
-  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_paper_author` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `paper_file`
 --
 ALTER TABLE `paper_file`
-  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_paper_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `partner`

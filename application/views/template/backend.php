@@ -7,6 +7,18 @@ $setting = $this->Crud_model->select('setting','*')->row();
   <title><?php echo $setting->nama_website ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <?php if ($this->uri->segment(1) == 'paper'): ?>
+  <!-- tag jurnal -->
+  <meta name="citation_title" content="<?php echo $paper->judul ?>">
+  <?php foreach ($author as $author): ?>
+  <meta name="citation_author" content="<?php echo $author->nama_author ?>">
+  <?php endforeach ?>
+  <meta name="citation_publication_date" content="<?php echo $paper->tanggal_publikasi ?>">
+  <meta name="citation_journal_title" content="<?php echo $setting->nama_website ?>">
+  <!-- end tag jurnal -->
+  <?php endif ?>
+
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
   <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>

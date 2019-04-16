@@ -4,19 +4,41 @@ $setting = $this->Crud_model->select('setting','*')->row();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><?php echo $setting->nama_website ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <?php if ($this->uri->segment(1) == 'paper'): ?>
+  <!-- tag standar -->
+  <title><?php echo $setting->nama_website.' - '.$paper->judul ?></title>
+  <meta name="title" content="<?php echo $paper->judul ?>">
+  <meta name="description" content="<?php echo strip_tags($paper->abstrak) ?>">
+  <meta name="keywords" content="<?php echo $paper->keyword ?>">
+  <!-- end tag standar -->
+
   <!-- tag jurnal -->
   <meta name="citation_title" content="<?php echo $paper->judul ?>">
+  <meta name="citation_publisher" content="Universitas Nusa Putra">
   <?php foreach ($author as $author): ?>
   <meta name="citation_author" content="<?php echo $author->nama_author ?>">
   <?php endforeach ?>
   <meta name="citation_publication_date" content="<?php echo $paper->tanggal_publikasi ?>">
+  <meta name="citation_language" content="Indonesia">
+  <meta name="citation_keywords" content="<?php echo $paper->keyword ?>">
   <meta name="citation_journal_title" content="<?php echo $setting->nama_website ?>">
+  <meta name="citation_abstract_html_url" content="<?php echo current_url() ?>"> 
   <!-- end tag jurnal -->
+
+  <!-- tambahan -->
+  <meta property="og:title" content="<?php echo $paper->judul ?>" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="<?php echo current_url() ?>" />
+  <meta property="og:image" content="<?php echo base_url() ?>uploads/cover/default-cover.jpg" />
+  <meta property="og:site_name" content="<?php echo $setting->nama_website ?>" />
+  <meta property="og:description" content="<?php echo strip_tags($paper->abstrak) ?>" />
+  <!-- end tambahan -->
+
+  <?php else: ?>
+  <title><?php echo $setting->nama_website ?></title>
   <?php endif ?>
 
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">

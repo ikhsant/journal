@@ -1,3 +1,3 @@
 # journal
 
-Simple Journal System
+Codeigniter - Simple Journal System 

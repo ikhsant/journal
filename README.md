@@ -1,0 +1,3 @@
+# journal
+
+Simple Journal System
